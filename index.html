@@ -20,8 +20,15 @@ ul{margin:0;padding-left:18px}li{margin:6px 0}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
 .stat{background:#161616;border:1px solid var(--line);border-radius:12px;padding:14px}.stat b{display:block;font-size:18px;color:var(--ember2)}
 .addr{font-family:ui-monospace,Menlo,monospace;word-break:break-all;background:#101010;border:1px solid var(--line);border-radius:12px;padding:14px;color:var(--ember2)}
-button{margin-top:10px;background:var(--ember);color:#111;border:0;border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer}
+button{background:var(--ember);color:#111;border:0;border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer}
+button.ghost{background:transparent;color:var(--ember2);border:1px solid var(--line)}
 footer{margin-top:48px;color:var(--muted);font-size:13px;text-align:center}
+.game-wrap{display:flex;flex-direction:column;align-items:center;gap:14px}
+#emberCanvas{width:min(100%,420px);height:260px;border-radius:16px;border:1px solid var(--line);background:radial-gradient(circle at 50% 70%,#2a1408,#0d0d0d 70%);cursor:pointer;touch-action:manipulation}
+.meter{width:min(100%,420px);height:14px;background:#0e0e0e;border-radius:999px;overflow:hidden;border:1px solid var(--line)}
+.meter>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ember),#ffd27a);transition:width .15s ease}
+.game-note{font-size:13px;color:var(--muted);text-align:center}
+.row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
 </style>
 </head>
 <body>
@@ -33,6 +40,21 @@ footer{margin-top:48px;color:var(--muted);font-size:13px;text-align:center}
     <div class="pill">PREP — awaiting launch</div>
   </div>
   <div class="risk"><strong>High-risk experimental token.</strong> Only risk capital you can afford to lose. Not financial advice. Not ReferTRM / TRM / any hiring brand.</div>
+
+  <section>
+    <h2>Stoke the Cinder</h2>
+    <div class="card game-wrap">
+      <p class="game-note">Fun only · PREP · does not burn real supply · no prizes · no APY</p>
+      <canvas id="emberCanvas" width="840" height="520" aria-label="Stoke the Cinder mini-game"></canvas>
+      <div class="meter" aria-hidden="true"><i id="burnFill"></i></div>
+      <div class="tag" id="burnLabel">Visual burn meter: 0% → goal 50%</div>
+      <div class="row">
+        <button type="button" id="stokeBtn">Stoke</button>
+        <button type="button" class="ghost" id="resetBtn">Reset</button>
+      </div>
+    </div>
+  </section>
+
   <section>
     <h2>How it works</h2>
     <div class="card"><ul>
@@ -71,7 +93,7 @@ footer{margin-top:48px;color:var(--muted);font-size:13px;text-align:center}
     <div class="card">
       <p class="tag">Omarchy creator wallet — send SOL here for launch (mainnet). Private key is not on this site.</p>
       <div class="addr" id="addr">6h36p4RVjyhsZ5XmEusXykvx6w3nhcRLiDRafq18xnh1</div>
-      <button type="button" onclick="navigator.clipboard.writeText(document.getElementById('addr').textContent);this.textContent='Copied'">Copy address</button>
+      <button type="button" style="margin-top:10px" onclick="navigator.clipboard.writeText(document.getElementById('addr').textContent);this.textContent='Copied'">Copy address</button>
     </div>
   </section>
   <section>
@@ -81,8 +103,90 @@ footer{margin-top:48px;color:var(--muted);font-size:13px;text-align:center}
       <li><a href="https://app.streamflow.finance/">Streamflow</a></li>
       <li><a href="https://app.squads.so/">Squads</a></li>
       <li>Solscan mint: pending — will update at go-live</li>
+      <li><a href="https://github.com/talentsolutionsmyanmar-max/cinder-cndr">Site source</a></li>
     </ul></div>
   </section>
   <footer>Cinder (CNDR) · experimental · not financial advice · © 2026</footer>
 </main>
+<script>
+(() => {
+  const canvas = document.getElementById('emberCanvas');
+  const ctx = canvas.getContext('2d');
+  const fill = document.getElementById('burnFill');
+  const label = document.getElementById('burnLabel');
+  let heat = 0; // 0..50 visual percent toward goal
+  const sparks = [];
+  function stoke() {
+    heat = Math.min(50, heat + 1.6 + Math.random() * 1.2);
+    for (let i = 0; i < 10; i++) {
+      sparks.push({
+        x: canvas.width * 0.5 + (Math.random() - 0.5) * 80,
+        y: canvas.height * 0.62,
+        vx: (Math.random() - 0.5) * 4,
+        vy: -2 - Math.random() * 4,
+        life: 1
+      });
+    }
+    fill.style.width = (heat / 50 * 100) + '%';
+    label.textContent = heat >= 50
+      ? 'Visual meter hit 50% — fun only, not a real burn'
+      : `Visual burn meter: ${heat.toFixed(1)}% → goal 50%`;
+  }
+  function reset() {
+    heat = 0; sparks.length = 0;
+    fill.style.width = '0%';
+    label.textContent = 'Visual burn meter: 0% → goal 50%';
+  }
+  function frame() {
+    const w = canvas.width, h = canvas.height;
+    ctx.clearRect(0, 0, w, h);
+    // coal base
+    ctx.fillStyle = '#1a1a1a';
+    ctx.beginPath();
+    ctx.ellipse(w*0.5, h*0.72, 140, 48, 0, 0, Math.PI*2);
+    ctx.fill();
+    // glow
+    const g = ctx.createRadialGradient(w*0.5, h*0.58, 10, w*0.5, h*0.58, 160);
+    const intensity = 0.25 + (heat/50)*0.75;
+    g.addColorStop(0, `rgba(255,140,40,${0.55*intensity})`);
+    g.addColorStop(0.4, `rgba(255,70,20,${0.25*intensity})`);
+    g.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = g;
+    ctx.beginPath();
+    ctx.arc(w*0.5, h*0.58, 160, 0, Math.PI*2);
+    ctx.fill();
+    // shard
+    ctx.fillStyle = '#2b2b2b';
+    ctx.beginPath();
+    ctx.moveTo(w*0.5, h*0.28);
+    ctx.lineTo(w*0.62, h*0.55);
+    ctx.lineTo(w*0.55, h*0.72);
+    ctx.lineTo(w*0.45, h*0.72);
+    ctx.lineTo(w*0.38, h*0.55);
+    ctx.closePath();
+    ctx.fill();
+    ctx.strokeStyle = `rgba(255,120,40,${0.35+intensity*0.5})`;
+    ctx.lineWidth = 4;
+    ctx.beginPath();
+    ctx.moveTo(w*0.5, h*0.32);
+    ctx.lineTo(w*0.5, h*0.68);
+    ctx.stroke();
+    // sparks
+    for (let i = sparks.length - 1; i >= 0; i--) {
+      const s = sparks[i];
+      s.x += s.vx; s.y += s.vy; s.life -= 0.02; s.vy -= 0.05;
+      if (s.life <= 0) { sparks.splice(i,1); continue; }
+      ctx.fillStyle = `rgba(255,${140+Math.random()*80},40,${s.life})`;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, 3, 0, Math.PI*2);
+      ctx.fill();
+    }
+    requestAnimationFrame(frame);
+  }
+  canvas.addEventListener('pointerdown', stoke);
+  document.getElementById('stokeBtn').addEventListener('click', stoke);
+  document.getElementById('resetBtn').addEventListener('click', reset);
+  frame();
+})();
+</script>
 </body></html>
