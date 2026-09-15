@@ -2,62 +2,131 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Cinder (CNDR) — burn until half is gone</title>
-<meta name="description" content="Cinder (CNDR): experimental Solana Token-2022. Burn until half the supply is gone."/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>Cinder (CNDR)</title>
+<meta name="description" content="Cinder (CNDR) — burn until half the supply is gone. Experimental Solana Token-2022 PREP."/>
+<meta name="theme-color" content="#0a0a0b"/>
+<link rel="icon" href="assets/cinder-cndr-logo.png"/>
 <style>
-:root{--bg:#121212;--card:#1a1a1a;--fg:#f5f0ea;--muted:#9a948c;--ember:#ff6a2a;--ember2:#ff8a3d;--line:#2a2a2a}
-*{box-sizing:border-box}body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--fg);line-height:1.5}
-a{color:var(--ember2)} .wrap{max-width:880px;margin:0 auto;padding:32px 20px 80px}
-.hero{text-align:center;padding:40px 0 24px}
-.hero img{width:120px;height:120px;border-radius:28px;box-shadow:0 0 48px rgba(255,106,42,.35)}
-h1{font-size:clamp(28px,5vw,44px);letter-spacing:.06em;margin:20px 0 8px}
-.tag{color:var(--muted)}.pill{display:inline-block;margin-top:16px;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:#181818;color:var(--ember2);font-size:13px}
-.risk{margin:24px 0;padding:14px 16px;border-left:3px solid var(--ember);background:#1c1410;color:#e8cbb8;font-size:14px}
-section{margin:36px 0}h2{font-size:20px;margin:0 0 12px;color:var(--ember2)}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
-ul{margin:0;padding-left:18px}li{margin:6px 0}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
-.stat{background:#161616;border:1px solid var(--line);border-radius:12px;padding:14px}.stat b{display:block;font-size:18px;color:var(--ember2)}
-.addr{font-family:ui-monospace,Menlo,monospace;word-break:break-all;background:#101010;border:1px solid var(--line);border-radius:12px;padding:14px;color:var(--ember2)}
-button{background:var(--ember);color:#111;border:0;border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer}
-button.ghost{background:transparent;color:var(--ember2);border:1px solid var(--line)}
-footer{margin-top:48px;color:var(--muted);font-size:13px;text-align:center}
-.game-wrap{display:flex;flex-direction:column;align-items:center;gap:14px}
-#emberCanvas{width:min(100%,420px);height:260px;border-radius:16px;border:1px solid var(--line);background:radial-gradient(circle at 50% 70%,#2a1408,#0d0d0d 70%);cursor:pointer;touch-action:manipulation}
-.meter{width:min(100%,420px);height:14px;background:#0e0e0e;border-radius:999px;overflow:hidden;border:1px solid var(--line)}
-.meter>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ember),#ffd27a);transition:width .15s ease}
-.game-note{font-size:13px;color:var(--muted);text-align:center}
-.row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+:root{
+  --bg:#070708; --bg2:#101014; --card:rgba(255,255,255,.04);
+  --stroke:rgba(255,255,255,.08); --fg:#f7f1ea; --muted:#9b938a;
+  --ember:#ff6a2a; --ember2:#ffb357; --ash:#2a2a2e;
+  --glow:rgba(255,106,42,.45);
+  --font:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--font);color:var(--fg);background:
+  radial-gradient(1200px 600px at 50% -10%, rgba(255,90,20,.18), transparent 60%),
+  radial-gradient(800px 500px at 80% 20%, rgba(255,160,60,.06), transparent 50%),
+  var(--bg); min-height:100dvh; overflow-x:hidden}
+a{color:var(--ember2); text-decoration:none} a:hover{text-decoration:underline}
+.wrap{width:min(1080px,100%); margin:0 auto; padding:24px 18px 96px}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0 18px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.08em}
+.brand img{width:36px;height:36px;border-radius:10px;box-shadow:0 0 24px var(--glow)}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;
+  border:1px solid var(--stroke); background:rgba(0,0,0,.35); color:var(--ember2); font-size:12px; font-weight:600}
+.hero{text-align:center; padding:28px 0 8px}
+.hero .logo{width:120px;height:120px;border-radius:28px; box-shadow:0 0 60px var(--glow), 0 20px 60px rgba(0,0,0,.5)}
+h1{font-size:clamp(34px,7vw,64px); letter-spacing:.08em; margin:18px 0 8px; font-weight:800}
+.tagline{color:var(--muted); font-size:clamp(15px,2.4vw,18px); max-width:40rem; margin:0 auto 18px; line-height:1.55}
+.cta-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:18px}
+.btn{appearance:none;border:0;cursor:pointer;font-weight:800;border-radius:14px;padding:12px 18px;font-size:14px}
+.btn-primary{background:linear-gradient(135deg,var(--ember),#ff8f3d); color:#140a04; box-shadow:0 8px 30px rgba(255,106,42,.35)}
+.btn-ghost{background:transparent;color:var(--fg);border:1px solid var(--stroke)}
+.risk{margin:22px auto; max-width:720px; padding:14px 16px; border-radius:14px;
+  background:linear-gradient(90deg, rgba(255,106,42,.12), rgba(255,106,42,.04));
+  border:1px solid rgba(255,106,42,.28); color:#f0d2bf; font-size:14px; line-height:1.45}
+.game-shell{margin:28px 0 40px; border-radius:28px; padding:14px; position:relative;
+  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  border:1px solid var(--stroke); box-shadow:0 30px 80px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.06)}
+.game-shell::before{content:""; position:absolute; inset:-1px; border-radius:29px; padding:1px;
+  background:linear-gradient(135deg, rgba(255,140,40,.5), transparent 40%, rgba(255,80,20,.25));
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor; mask-composite:exclude; pointer-events:none}
+.game-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:6px 8px 12px;flex-wrap:wrap}
+.game-top h2{margin:0;font-size:20px;color:var(--ember2)}
+.game-note{margin:4px 0 0;color:var(--muted);font-size:12px}
+.hud{display:flex;gap:10px;flex-wrap:wrap}
+.statchip{min-width:88px;padding:8px 10px;border-radius:12px;background:rgba(0,0,0,.35);border:1px solid var(--stroke)}
+.statchip b{display:block;font-size:16px;color:var(--ember2)}
+.statchip span{font-size:11px;color:var(--muted)}
+#stage{position:relative; width:100%; border-radius:20px; overflow:hidden; background:#050506;
+  aspect-ratio: 16 / 10; touch-action:none; cursor:crosshair}
+#stage canvas{position:absolute; inset:0; width:100%; height:100%; display:block}
+.game-bottom{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 8px 4px;flex-wrap:wrap}
+.meter-wrap{flex:1; min-width:180px}
+.meter-label{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.meter{height:12px;border-radius:999px;background:rgba(255,255,255,.06); overflow:hidden; border:1px solid var(--stroke); position:relative}
+.meter > i{display:block;height:100%;width:0%; border-radius:inherit;
+  background:linear-gradient(90deg,#ff3d00,var(--ember),var(--ember2));
+  box-shadow:0 0 18px var(--glow); transition:width .12s ease-out}
+.controls{display:flex;gap:8px}
+section{margin:42px 0} h3{margin:0 0 14px;font-size:18px;color:var(--ember2);letter-spacing:.04em}
+.card{background:var(--card); border:1px solid var(--stroke); border-radius:20px; padding:18px 18px;
+  backdrop-filter: blur(10px)}
+.grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px}
+.tile{padding:14px;border-radius:16px;background:rgba(0,0,0,.28);border:1px solid var(--stroke)}
+.tile b{display:block;font-size:22px;color:var(--ember2);margin-bottom:4px}
+.tile span{color:var(--muted);font-size:13px}
+ul{margin:0;padding-left:18px} li{margin:8px 0;color:#e8e0d8}
+.addr{font-family:var(--mono); font-size:clamp(12px,2.5vw,15px); word-break:break-all;
+  padding:14px; border-radius:14px; background:#0b0b0d; border:1px solid var(--stroke); color:var(--ember2)}
+footer{margin-top:56px; text-align:center; color:var(--muted); font-size:13px}
+@media (max-width:640px){ #stage{aspect-ratio: 4 / 5} .hero .logo{width:96px;height:96px;border-radius:22px} }
 </style>
 </head>
 <body>
-<main class="wrap">
-  <div class="hero">
-    <img src="assets/cinder-cndr-logo.png" alt="Cinder logo"/>
-    <h1>CINDER · CNDR</h1>
-    <p class="tag">Burn until half the supply is gone — transfer fee + treasury buyback, locks public, mint/freeze revoked.</p>
+<div class="wrap">
+  <div class="nav">
+    <div class="brand"><img src="assets/cinder-cndr-logo.png" alt=""/> CINDER</div>
     <div class="pill">PREP — awaiting launch</div>
-    <p style="margin-top:18px"><a href="#game" style="display:inline-block;background:#ff6a2a;color:#111;font-weight:800;padding:12px 18px;border-radius:12px;text-decoration:none">Play Stoke the Cinder</a></p>
   </div>
+
+  <header class="hero">
+    <img class="logo" src="assets/cinder-cndr-logo.png" alt="Cinder logo"/>
+    <h1>CINDER · CNDR</h1>
+    <p class="tagline">Burn until half the supply is gone — transfer fee + treasury buyback, locks public, mint/freeze revoked.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#game">Play Stoke the Cinder</a>
+      <a class="btn btn-ghost" href="#wallet">Creator wallet</a>
+    </div>
+  </header>
+
   <div class="risk"><strong>High-risk experimental token.</strong> Only risk capital you can afford to lose. Not financial advice. Not ReferTRM / TRM / any hiring brand.</div>
 
-  <section id="game">
-    <h2>Stoke the Cinder</h2>
-    <div class="card game-wrap">
-      <p class="game-note">Fun only · PREP · does not burn real supply · no prizes · no APY</p>
-      <canvas id="emberCanvas" width="840" height="520" aria-label="Stoke the Cinder mini-game"></canvas>
-      <div class="meter" aria-hidden="true"><i id="burnFill"></i></div>
-      <div class="tag" id="burnLabel">Visual burn meter: 0% → goal 50%</div>
-      <div class="row">
-        <button type="button" id="stokeBtn">Stoke</button>
-        <button type="button" class="ghost" id="resetBtn">Reset</button>
+  <div class="game-shell" id="game">
+    <div class="game-top">
+      <div>
+        <h2>Stoke the Cinder</h2>
+        <p class="game-note">Fun only · PREP · does not burn real supply · no prizes · no APY</p>
+      </div>
+      <div class="hud">
+        <div class="statchip"><b id="heatVal">0.0%</b><span>heat</span></div>
+        <div class="statchip"><b id="comboVal">x1</b><span>combo</span></div>
+        <div class="statchip"><b id="stokesVal">0</b><span>stokes</span></div>
       </div>
     </div>
-  </section>
+    <div id="stage" aria-label="Stoke the Cinder game">
+      <canvas id="fx"></canvas>
+      <canvas id="main"></canvas>
+    </div>
+    <div class="game-bottom">
+      <div class="meter-wrap">
+        <div class="meter-label"><span id="meterText">Toward visual 50%</span><span>goal</span></div>
+        <div class="meter"><i id="burnFill"></i></div>
+      </div>
+      <div class="controls">
+        <button class="btn btn-primary" id="stokeBtn" type="button">Stoke</button>
+        <button class="btn btn-ghost" id="resetBtn" type="button">Reset</button>
+      </div>
+    </div>
+  </div>
 
   <section>
-    <h2>How it works</h2>
+    <h3>How it works</h3>
     <div class="card"><ul>
       <li>Token-2022 transfer fee at launch: <strong>3%</strong> on StonkFun reward mode (platform max; sealed design wanted 5–8%).</li>
       <li>Treasury buyback-and-burn as volume appears.</li>
@@ -65,20 +134,21 @@ footer{margin-top:48px;color:var(--muted);font-size:13px;text-align:center}
       <li>Mint authority and freeze authority revoked at launch.</li>
     </ul></div>
   </section>
+
   <section>
-    <h2>Tokenomics</h2>
+    <h3>Tokenomics</h3>
     <div class="grid">
-      <div class="stat"><b>1B</b> fixed supply</div>
-      <div class="stat"><b>40%</b> curve / float</div>
-      <div class="stat"><b>45%</b> long lock 5–10y</div>
-      <div class="stat"><b>10%</b> treasury / burn</div>
-      <div class="stat"><b>5%</b> team vesting</div>
-      <div class="stat"><b>≥50%</b> burn target</div>
+      <div class="tile"><b>1B</b><span>fixed supply</span></div>
+      <div class="tile"><b>40%</b><span>curve / float</span></div>
+      <div class="tile"><b>45%</b><span>long lock 5–10y</span></div>
+      <div class="tile"><b>10%</b><span>treasury / burn</span></div>
+      <div class="tile"><b>5%</b><span>team vesting</span></div>
+      <div class="tile"><b>≥50%</b><span>burn target</span></div>
     </div>
-    <p class="tag" style="margin-top:12px">Team 5%: Streamflow, 6-month cliff + linear, no TGE unlock. Treasury in Squads multi-sig.</p>
   </section>
+
   <section>
-    <h2>Public commitment</h2>
+    <h3>Public commitment</h3>
     <div class="card"><ul>
       <li>Total supply fixed at 1B. Mint authority revoked. No remint.</li>
       <li>Permanently burn until at least 50% (500M) is destroyed.</li>
@@ -89,16 +159,20 @@ footer{margin-top:48px;color:var(--muted);font-size:13px;text-align:center}
       <li>High-risk experimental token only.</li>
     </ul></div>
   </section>
-  <section>
-    <h2>Creator wallet</h2>
+
+  <section id="wallet">
+    <h3>Creator wallet</h3>
     <div class="card">
-      <p class="tag">Omarchy creator wallet — send SOL here for launch (mainnet). Private key is not on this site.</p>
+      <p class="game-note" style="margin-bottom:10px">Public address for launch funding. Private key is not on this site.</p>
       <div class="addr" id="addr">6h36p4RVjyhsZ5XmEusXykvx6w3nhcRLiDRafq18xnh1</div>
-      <button type="button" style="margin-top:10px" onclick="navigator.clipboard.writeText(document.getElementById('addr').textContent);this.textContent='Copied'">Copy address</button>
+      <div class="cta-row" style="justify-content:flex-start;margin-top:12px">
+        <button class="btn btn-primary" type="button" id="copyBtn">Copy address</button>
+      </div>
     </div>
   </section>
+
   <section>
-    <h2>Links</h2>
+    <h3>Links</h3>
     <div class="card"><ul>
       <li><a href="https://www.stonkfun.xyz/launch">StonkFun launch</a></li>
       <li><a href="https://app.streamflow.finance/">Streamflow</a></li>
@@ -107,87 +181,219 @@ footer{margin-top:48px;color:var(--muted);font-size:13px;text-align:center}
       <li><a href="https://github.com/talentsolutionsmyanmar-max/cinder-cndr">Site source</a></li>
     </ul></div>
   </section>
+
   <footer>Cinder (CNDR) · experimental · not financial advice · © 2026</footer>
-</main>
+</div>
 <script>
 (() => {
-  const canvas = document.getElementById('emberCanvas');
-  const ctx = canvas.getContext('2d');
+  const stage = document.getElementById('stage');
+  const main = document.getElementById('main');
+  const fx = document.getElementById('fx');
+  const ctx = main.getContext('2d');
+  const fctx = fx.getContext('2d');
   const fill = document.getElementById('burnFill');
-  const label = document.getElementById('burnLabel');
-  let heat = 0; // 0..50 visual percent toward goal
-  const sparks = [];
-  function stoke() {
-    heat = Math.min(50, heat + 1.6 + Math.random() * 1.2);
-    for (let i = 0; i < 10; i++) {
-      sparks.push({
-        x: canvas.width * 0.5 + (Math.random() - 0.5) * 80,
-        y: canvas.height * 0.62,
-        vx: (Math.random() - 0.5) * 4,
-        vy: -2 - Math.random() * 4,
-        life: 1
+  const heatVal = document.getElementById('heatVal');
+  const comboVal = document.getElementById('comboVal');
+  const stokesVal = document.getElementById('stokesVal');
+  const meterText = document.getElementById('meterText');
+
+  let W=0,H=0,dpr=1, heat=0, combo=1, comboTimer=0, stokes=0, shake=0;
+  const particles=[], floaters=[], cracks=[];
+  for (let i=0;i<7;i++) cracks.push({a: Math.random()*Math.PI*2, len: .25+Math.random()*.45, w:1+Math.random()*2});
+
+  function resize(){
+    const r = stage.getBoundingClientRect();
+    dpr = Math.min(window.devicePixelRatio||1, 2);
+    W = Math.max(1, Math.floor(r.width));
+    H = Math.max(1, Math.floor(r.height));
+    for (const c of [main, fx]) {
+      c.width = Math.floor(W*dpr); c.height = Math.floor(H*dpr);
+      c.style.width = W+'px'; c.style.height = H+'px';
+    }
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    fctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  window.addEventListener('resize', resize); resize();
+
+  function spawnBurst(x,y,n,power){
+    for (let i=0;i<n;i++){
+      const ang = -Math.PI/2 + (Math.random()-.5)*1.4;
+      const sp = (2+Math.random()*5)*power;
+      particles.push({
+        x,y, vx:Math.cos(ang)*sp, vy:Math.sin(ang)*sp,
+        life:1, decay:.012+Math.random()*.02,
+        size:1+Math.random()*3*power, kind: Math.random()<.2?'ash':'spark'
       });
     }
-    fill.style.width = (heat / 50 * 100) + '%';
-    label.textContent = heat >= 50
-      ? 'Visual meter hit 50% — fun only, not a real burn'
-      : `Visual burn meter: ${heat.toFixed(1)}% → goal 50%`;
   }
-  function reset() {
-    heat = 0; sparks.length = 0;
-    fill.style.width = '0%';
-    label.textContent = 'Visual burn meter: 0% → goal 50%';
+  function floater(x,y,text){
+    floaters.push({x,y, text, life:1, vy:-.6-Math.random()*.4});
   }
-  function frame() {
-    const w = canvas.width, h = canvas.height;
-    ctx.clearRect(0, 0, w, h);
-    // coal base
-    ctx.fillStyle = '#1a1a1a';
-    ctx.beginPath();
-    ctx.ellipse(w*0.5, h*0.72, 140, 48, 0, 0, Math.PI*2);
-    ctx.fill();
-    // glow
-    const g = ctx.createRadialGradient(w*0.5, h*0.58, 10, w*0.5, h*0.58, 160);
-    const intensity = 0.25 + (heat/50)*0.75;
-    g.addColorStop(0, `rgba(255,140,40,${0.55*intensity})`);
-    g.addColorStop(0.4, `rgba(255,70,20,${0.25*intensity})`);
-    g.addColorStop(1, 'rgba(0,0,0,0)');
-    ctx.fillStyle = g;
-    ctx.beginPath();
-    ctx.arc(w*0.5, h*0.58, 160, 0, Math.PI*2);
-    ctx.fill();
-    // shard
-    ctx.fillStyle = '#2b2b2b';
-    ctx.beginPath();
-    ctx.moveTo(w*0.5, h*0.28);
-    ctx.lineTo(w*0.62, h*0.55);
-    ctx.lineTo(w*0.55, h*0.72);
-    ctx.lineTo(w*0.45, h*0.72);
-    ctx.lineTo(w*0.38, h*0.55);
-    ctx.closePath();
-    ctx.fill();
-    ctx.strokeStyle = `rgba(255,120,40,${0.35+intensity*0.5})`;
-    ctx.lineWidth = 4;
-    ctx.beginPath();
-    ctx.moveTo(w*0.5, h*0.32);
-    ctx.lineTo(w*0.5, h*0.68);
-    ctx.stroke();
-    // sparks
-    for (let i = sparks.length - 1; i >= 0; i--) {
-      const s = sparks[i];
-      s.x += s.vx; s.y += s.vy; s.life -= 0.02; s.vy -= 0.05;
-      if (s.life <= 0) { sparks.splice(i,1); continue; }
-      ctx.fillStyle = `rgba(255,${140+Math.random()*80},40,${s.life})`;
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, 3, 0, Math.PI*2);
-      ctx.fill();
+
+  function stoke(clientX, clientY){
+    const r = stage.getBoundingClientRect();
+    const x = (clientX!=null? clientX : r.left+r.width/2) - r.left;
+    const y = (clientY!=null? clientY : r.top+r.height*.58) - r.top;
+    const now = performance.now();
+    if (now - (stoke._last||0) < 280) combo = Math.min(12, combo+1); else combo = 1;
+    stoke._last = now; comboTimer = 1.1;
+    const gain = (1.1 + Math.random()*.7) * (1 + (combo-1)*.08);
+    heat = Math.min(50, heat + gain);
+    stokes++; shake = Math.min(10, 3+combo*.4);
+    spawnBurst(W*.5 + (x-W*.5)*.15, H*.58, 18+combo*2, 1+combo*.08);
+    floater(x, y-10, `+${gain.toFixed(1)}`);
+    syncHud();
+  }
+  function reset(){
+    heat=0; combo=1; comboTimer=0; stokes=0; particles.length=0; floaters.length=0; shake=0;
+    syncHud();
+  }
+  function syncHud(){
+    heatVal.textContent = heat.toFixed(1)+'%';
+    comboVal.textContent = 'x'+combo;
+    stokesVal.textContent = String(stokes);
+    fill.style.width = (heat/50*100)+'%';
+    meterText.textContent = heat>=50 ? 'Visual 50% reached — fun only, not a real burn' : 'Toward visual 50%';
+  }
+
+  stage.addEventListener('pointerdown', e => { stage.setPointerCapture?.(e.pointerId); stoke(e.clientX,e.clientY); });
+  document.getElementById('stokeBtn').addEventListener('click', () => stoke());
+  document.getElementById('resetBtn').addEventListener('click', reset);
+  document.getElementById('copyBtn').addEventListener('click', async (e) => {
+    await navigator.clipboard.writeText(document.getElementById('addr').textContent.trim());
+    e.target.textContent = 'Copied';
+    setTimeout(()=>e.target.textContent='Copy address', 1200);
+  });
+
+  // idle embers
+  function idleSpawn(){
+    if (particles.length < 90) {
+      particles.push({
+        x: W*.5+(Math.random()-.5)*W*.25, y: H*.72,
+        vx:(Math.random()-.5)*.4, vy: -(.4+Math.random()*1.2),
+        life:.7+Math.random()*.5, decay:.004+Math.random()*.006,
+        size:1+Math.random()*2, kind:'idle'
+      });
     }
+  }
+
+  function drawShard(c, cx, cy, scale, t, heatN){
+    c.save();
+    c.translate(cx,cy);
+    // outer glow
+    const g = c.createRadialGradient(0,0,10*scale, 0,0,160*scale);
+    const inten = .25 + heatN*.75;
+    g.addColorStop(0, `rgba(255,140,40,${.55*inten})`);
+    g.addColorStop(.35, `rgba(255,70,20,${.22*inten})`);
+    g.addColorStop(1, 'rgba(0,0,0,0)');
+    c.fillStyle = g; c.beginPath(); c.arc(0,10*scale,170*scale,0,Math.PI*2); c.fill();
+
+    // body
+    c.beginPath();
+    c.moveTo(0, -90*scale);
+    c.lineTo(52*scale, -10*scale);
+    c.lineTo(38*scale, 78*scale);
+    c.lineTo(-36*scale, 78*scale);
+    c.lineTo(-54*scale, -8*scale);
+    c.closePath();
+    const body = c.createLinearGradient(-40*scale,-90*scale,40*scale,80*scale);
+    body.addColorStop(0,'#3a3a40'); body.addColorStop(.5,'#1b1b1f'); body.addColorStop(1,'#0e0e10');
+    c.fillStyle = body; c.fill();
+    c.strokeStyle = `rgba(255,140,60,${.25+inten*.4})`; c.lineWidth = 2; c.stroke();
+
+    // cracks
+    c.save();
+    c.globalCompositeOperation = 'lighter';
+    for (const cr of cracks){
+      const pulse = .5 + .5*Math.sin(t*3 + cr.a*3);
+      c.strokeStyle = `rgba(255,${120+80*heatN},40,${(.35+heatN*.5)*pulse})`;
+      c.lineWidth = cr.w;
+      c.beginPath();
+      c.moveTo(Math.cos(cr.a)*8*scale, Math.sin(cr.a)*8*scale - 20*scale);
+      c.lineTo(Math.cos(cr.a)*90*scale*cr.len, Math.sin(cr.a)*90*scale*cr.len + 10*scale);
+      c.stroke();
+    }
+    // core seam
+    c.strokeStyle = `rgba(255,200,80,${.45+inten*.5})`;
+    c.lineWidth = 3+heatN*2;
+    c.shadowColor = '#ff6a2a'; c.shadowBlur = 18+heatN*20;
+    c.beginPath(); c.moveTo(0,-70*scale); c.lineTo(0,70*scale); c.stroke();
+    c.restore();
+
+    // ground ember
+    c.fillStyle = `rgba(255,90,20,${.08+heatN*.12})`;
+    c.beginPath(); c.ellipse(0, 95*scale, 120*scale, 22*scale, 0, 0, Math.PI*2); c.fill();
+    c.restore();
+  }
+
+  let last = performance.now();
+  function frame(now){
+    const dt = Math.min(.033, (now-last)/1000); last = now;
+    const t = now/1000;
+    comboTimer = Math.max(0, comboTimer-dt);
+    if (comboTimer<=0) combo=1;
+    shake = Math.max(0, shake - dt*18);
+    idleSpawn();
+
+    const sx = (Math.random()-.5)*shake, sy = (Math.random()-.5)*shake;
+    const heatN = heat/50;
+
+    // fx layer: soft trails
+    fctx.fillStyle = 'rgba(5,5,6,.22)';
+    fctx.fillRect(0,0,W,H);
+
+    ctx.clearRect(0,0,W,H);
+    // vignette bg
+    const bg = ctx.createRadialGradient(W/2,H*.55,20, W/2,H*.55, Math.max(W,H)*.7);
+    bg.addColorStop(0,'#17110d'); bg.addColorStop(1,'#050506');
+    ctx.fillStyle = bg; ctx.fillRect(0,0,W,H);
+
+    ctx.save(); ctx.translate(sx,sy);
+    drawShard(ctx, W*.5, H*.55, Math.min(W,H)/420, t, heatN);
+
+    // particles on main
+    for (let i=particles.length-1;i>=0;i--){
+      const p = particles[i];
+      p.x += p.vx; p.y += p.vy; p.vy -= .03; p.life -= p.decay;
+      if (p.life<=0){ particles.splice(i,1); continue; }
+      const a = Math.max(0,p.life);
+      if (p.kind==='ash'){
+        ctx.fillStyle = `rgba(160,150,140,${a*.5})`;
+      } else {
+        ctx.fillStyle = `rgba(255,${140+Math.random()*90},40,${a})`;
+        ctx.shadowColor = '#ff6a2a'; ctx.shadowBlur = 8;
+      }
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.size,0,Math.PI*2); ctx.fill();
+      ctx.shadowBlur = 0;
+      // also to fx trail
+      fctx.fillStyle = `rgba(255,120,40,${a*.35})`;
+      fctx.beginPath(); fctx.arc(p.x,p.y,p.size*1.2,0,Math.PI*2); fctx.fill();
+    }
+
+    for (let i=floaters.length-1;i>=0;i--){
+      const f = floaters[i];
+      f.y += f.vy; f.life -= .02;
+      if (f.life<=0){ floaters.splice(i,1); continue; }
+      ctx.globalAlpha = f.life; ctx.fillStyle = '#ffd29a';
+      ctx.font = '700 16px '+getComputedStyle(document.body).fontFamily;
+      ctx.fillText(f.text, f.x, f.y); ctx.globalAlpha = 1;
+    }
+    ctx.restore();
+
+    // heat ring
+    ctx.save();
+    ctx.translate(W*.5 + sx, H*.55 + sy);
+    ctx.strokeStyle = `rgba(255,140,40,${.15+heatN*.35})`;
+    ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.arc(0,0, Math.min(W,H)*.28, -Math.PI/2, -Math.PI/2 + Math.PI*2*(heat/50)); ctx.stroke();
+    ctx.restore();
+
+    comboVal.textContent = 'x'+combo;
     requestAnimationFrame(frame);
   }
-  canvas.addEventListener('pointerdown', stoke);
-  document.getElementById('stokeBtn').addEventListener('click', stoke);
-  document.getElementById('resetBtn').addEventListener('click', reset);
-  frame();
+  syncHud();
+  requestAnimationFrame(frame);
 })();
 </script>
-</body></html>
+</body>
+</html>
