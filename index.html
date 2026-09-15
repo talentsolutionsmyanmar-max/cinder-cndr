@@ -5,47 +5,48 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>Cinder (CNDR)</title>
 <meta name="description" content="Cinder (CNDR) — burn until half the supply is gone. Experimental Solana Token-2022 PREP."/>
-<meta name="theme-color" content="#0a0a0b"/>
+<meta name="theme-color" content="#070708"/>
 <link rel="icon" href="assets/cinder-cndr-logo.png"/>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
 <style>
 :root{
-  --bg:#070708; --bg2:#101014; --card:rgba(255,255,255,.04);
-  --stroke:rgba(255,255,255,.08); --fg:#f7f1ea; --muted:#9b938a;
-  --ember:#ff6a2a; --ember2:#ffb357; --ash:#2a2a2e;
-  --glow:rgba(255,106,42,.45);
+  --bg:#070708; --fg:#f7f1ea; --muted:#9b938a; --ember:#ff6a2a; --ember2:#ffb357;
+  --stroke:rgba(255,255,255,.08); --card:rgba(255,255,255,.04);
   --font:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
   --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
 }
 *{box-sizing:border-box} html{scroll-behavior:smooth}
 body{margin:0;font-family:var(--font);color:var(--fg);background:
-  radial-gradient(1200px 600px at 50% -10%, rgba(255,90,20,.18), transparent 60%),
-  radial-gradient(800px 500px at 80% 20%, rgba(255,160,60,.06), transparent 50%),
+  radial-gradient(1100px 520px at 50% -8%, rgba(255,90,20,.2), transparent 55%),
+  radial-gradient(700px 420px at 85% 15%, rgba(255,160,60,.07), transparent 50%),
   var(--bg); min-height:100dvh; overflow-x:hidden}
-a{color:var(--ember2); text-decoration:none} a:hover{text-decoration:underline}
-.wrap{width:min(1080px,100%); margin:0 auto; padding:24px 18px 96px}
-.nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0 18px}
-.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.08em}
-.brand img{width:36px;height:36px;border-radius:10px;box-shadow:0 0 24px var(--glow)}
-.pill{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;
-  border:1px solid var(--stroke); background:rgba(0,0,0,.35); color:var(--ember2); font-size:12px; font-weight:600}
-.hero{text-align:center; padding:28px 0 8px}
-.hero .logo{width:120px;height:120px;border-radius:28px; box-shadow:0 0 60px var(--glow), 0 20px 60px rgba(0,0,0,.5)}
-h1{font-size:clamp(34px,7vw,64px); letter-spacing:.08em; margin:18px 0 8px; font-weight:800}
-.tagline{color:var(--muted); font-size:clamp(15px,2.4vw,18px); max-width:40rem; margin:0 auto 18px; line-height:1.55}
-.cta-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:18px}
+a{color:var(--ember2);text-decoration:none} a:hover{text-decoration:underline}
+.wrap{width:min(1100px,100%);margin:0 auto;padding:22px 16px 96px}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:6px 0 16px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.1em}
+.brand img{width:34px;height:34px;border-radius:10px;box-shadow:0 0 22px rgba(255,106,42,.45)}
+.pill{padding:7px 12px;border-radius:999px;border:1px solid var(--stroke);background:rgba(0,0,0,.35);color:var(--ember2);font-size:12px;font-weight:700}
+.hero{text-align:center;padding:20px 0 6px}
+.hero .logo{width:112px;height:112px;border-radius:26px;box-shadow:0 0 60px rgba(255,106,42,.45),0 18px 50px rgba(0,0,0,.5)}
+h1{font-size:clamp(32px,6.5vw,60px);letter-spacing:.08em;margin:16px 0 8px;font-weight:800}
+.tagline{color:var(--muted);font-size:clamp(15px,2.3vw,18px);max-width:40rem;margin:0 auto 16px;line-height:1.55}
+.cta-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:14px}
 .btn{appearance:none;border:0;cursor:pointer;font-weight:800;border-radius:14px;padding:12px 18px;font-size:14px}
-.btn-primary{background:linear-gradient(135deg,var(--ember),#ff8f3d); color:#140a04; box-shadow:0 8px 30px rgba(255,106,42,.35)}
+.btn-primary{background:linear-gradient(135deg,var(--ember),#ff8f3d);color:#140a04;box-shadow:0 8px 30px rgba(255,106,42,.35)}
 .btn-ghost{background:transparent;color:var(--fg);border:1px solid var(--stroke)}
-.risk{margin:22px auto; max-width:720px; padding:14px 16px; border-radius:14px;
-  background:linear-gradient(90deg, rgba(255,106,42,.12), rgba(255,106,42,.04));
-  border:1px solid rgba(255,106,42,.28); color:#f0d2bf; font-size:14px; line-height:1.45}
-.game-shell{margin:28px 0 40px; border-radius:28px; padding:14px; position:relative;
-  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-  border:1px solid var(--stroke); box-shadow:0 30px 80px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.06)}
-.game-shell::before{content:""; position:absolute; inset:-1px; border-radius:29px; padding:1px;
-  background:linear-gradient(135deg, rgba(255,140,40,.5), transparent 40%, rgba(255,80,20,.25));
-  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite:xor; mask-composite:exclude; pointer-events:none}
+.risk{margin:20px auto;max-width:740px;padding:14px 16px;border-radius:14px;
+  background:linear-gradient(90deg,rgba(255,106,42,.12),rgba(255,106,42,.04));
+  border:1px solid rgba(255,106,42,.28);color:#f0d2bf;font-size:14px;line-height:1.45}
+.game-shell{margin:26px 0 36px;border-radius:28px;padding:14px;position:relative;
+  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
+  border:1px solid var(--stroke);box-shadow:0 30px 80px rgba(0,0,0,.45)}
 .game-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:6px 8px 12px;flex-wrap:wrap}
 .game-top h2{margin:0;font-size:20px;color:var(--ember2)}
 .game-note{margin:4px 0 0;color:var(--muted);font-size:12px}
@@ -53,29 +54,26 @@ h1{font-size:clamp(34px,7vw,64px); letter-spacing:.08em; margin:18px 0 8px; font
 .statchip{min-width:88px;padding:8px 10px;border-radius:12px;background:rgba(0,0,0,.35);border:1px solid var(--stroke)}
 .statchip b{display:block;font-size:16px;color:var(--ember2)}
 .statchip span{font-size:11px;color:var(--muted)}
-#stage{position:relative; width:100%; border-radius:20px; overflow:hidden; background:#050506;
-  aspect-ratio: 16 / 10; touch-action:none; cursor:crosshair}
-#stage canvas{position:absolute; inset:0; width:100%; height:100%; display:block}
+#stage{position:relative;width:100%;border-radius:20px;overflow:hidden;background:#030304;
+  aspect-ratio:16/10;touch-action:none;cursor:grab}
+#stage:active{cursor:grabbing}
+#stage canvas{display:block;width:100%!important;height:100%!important}
 .game-bottom{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 8px 4px;flex-wrap:wrap}
-.meter-wrap{flex:1; min-width:180px}
+.meter-wrap{flex:1;min-width:180px}
 .meter-label{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
-.meter{height:12px;border-radius:999px;background:rgba(255,255,255,.06); overflow:hidden; border:1px solid var(--stroke); position:relative}
-.meter > i{display:block;height:100%;width:0%; border-radius:inherit;
-  background:linear-gradient(90deg,#ff3d00,var(--ember),var(--ember2));
-  box-shadow:0 0 18px var(--glow); transition:width .12s ease-out}
+.meter{height:12px;border-radius:999px;background:rgba(255,255,255,.06);overflow:hidden;border:1px solid var(--stroke)}
+.meter>i{display:block;height:100%;width:0%;border-radius:inherit;background:linear-gradient(90deg,#ff3d00,var(--ember),var(--ember2));box-shadow:0 0 18px rgba(255,106,42,.45);transition:width .12s ease-out}
 .controls{display:flex;gap:8px}
-section{margin:42px 0} h3{margin:0 0 14px;font-size:18px;color:var(--ember2);letter-spacing:.04em}
-.card{background:var(--card); border:1px solid var(--stroke); border-radius:20px; padding:18px 18px;
-  backdrop-filter: blur(10px)}
-.grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px}
+section{margin:40px 0} h3{margin:0 0 14px;font-size:18px;color:var(--ember2);letter-spacing:.04em}
+.card{background:var(--card);border:1px solid var(--stroke);border-radius:20px;padding:18px;backdrop-filter:blur(10px)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
 .tile{padding:14px;border-radius:16px;background:rgba(0,0,0,.28);border:1px solid var(--stroke)}
 .tile b{display:block;font-size:22px;color:var(--ember2);margin-bottom:4px}
 .tile span{color:var(--muted);font-size:13px}
 ul{margin:0;padding-left:18px} li{margin:8px 0;color:#e8e0d8}
-.addr{font-family:var(--mono); font-size:clamp(12px,2.5vw,15px); word-break:break-all;
-  padding:14px; border-radius:14px; background:#0b0b0d; border:1px solid var(--stroke); color:var(--ember2)}
-footer{margin-top:56px; text-align:center; color:var(--muted); font-size:13px}
-@media (max-width:640px){ #stage{aspect-ratio: 4 / 5} .hero .logo{width:96px;height:96px;border-radius:22px} }
+.addr{font-family:var(--mono);font-size:clamp(12px,2.5vw,15px);word-break:break-all;padding:14px;border-radius:14px;background:#0b0b0d;border:1px solid var(--stroke);color:var(--ember2)}
+footer{margin-top:56px;text-align:center;color:var(--muted);font-size:13px}
+@media (max-width:640px){#stage{aspect-ratio:4/5}.hero .logo{width:92px;height:92px;border-radius:22px}}
 </style>
 </head>
 <body>
@@ -84,7 +82,6 @@ footer{margin-top:56px; text-align:center; color:var(--muted); font-size:13px}
     <div class="brand"><img src="assets/cinder-cndr-logo.png" alt=""/> CINDER</div>
     <div class="pill">PREP — awaiting launch</div>
   </div>
-
   <header class="hero">
     <img class="logo" src="assets/cinder-cndr-logo.png" alt="Cinder logo"/>
     <h1>CINDER · CNDR</h1>
@@ -94,14 +91,13 @@ footer{margin-top:56px; text-align:center; color:var(--muted); font-size:13px}
       <a class="btn btn-ghost" href="#wallet">Creator wallet</a>
     </div>
   </header>
-
   <div class="risk"><strong>High-risk experimental token.</strong> Only risk capital you can afford to lose. Not financial advice. Not ReferTRM / TRM / any hiring brand.</div>
 
   <div class="game-shell" id="game">
     <div class="game-top">
       <div>
         <h2>Stoke the Cinder</h2>
-        <p class="game-note">Fun only · PREP · does not burn real supply · no prizes · no APY</p>
+        <p class="game-note">3D · Fun only · PREP · does not burn real supply · no prizes · no APY</p>
       </div>
       <div class="hud">
         <div class="statchip"><b id="heatVal">0.0%</b><span>heat</span></div>
@@ -109,10 +105,7 @@ footer{margin-top:56px; text-align:center; color:var(--muted); font-size:13px}
         <div class="statchip"><b id="stokesVal">0</b><span>stokes</span></div>
       </div>
     </div>
-    <div id="stage" aria-label="Stoke the Cinder game">
-      <canvas id="fx"></canvas>
-      <canvas id="main"></canvas>
-    </div>
+    <div id="stage" aria-label="3D Stoke the Cinder"></div>
     <div class="game-bottom">
       <div class="meter-wrap">
         <div class="meter-label"><span id="meterText">Toward visual 50%</span><span>goal</span></div>
@@ -125,275 +118,341 @@ footer{margin-top:56px; text-align:center; color:var(--muted); font-size:13px}
     </div>
   </div>
 
-  <section>
-    <h3>How it works</h3>
-    <div class="card"><ul>
-      <li>Token-2022 transfer fee at launch: <strong>3%</strong> on StonkFun reward mode (platform max; sealed design wanted 5–8%).</li>
-      <li>Treasury buyback-and-burn as volume appears.</li>
-      <li>Public locks (Streamflow / multi-sig + timelock).</li>
-      <li>Mint authority and freeze authority revoked at launch.</li>
-    </ul></div>
-  </section>
+  <section><h3>How it works</h3><div class="card"><ul>
+    <li>Token-2022 transfer fee at launch: <strong>3%</strong> on StonkFun reward mode (platform max; sealed design wanted 5–8%).</li>
+    <li>Treasury buyback-and-burn as volume appears.</li>
+    <li>Public locks (Streamflow / multi-sig + timelock).</li>
+    <li>Mint authority and freeze authority revoked at launch.</li>
+  </ul></div></section>
 
-  <section>
-    <h3>Tokenomics</h3>
-    <div class="grid">
-      <div class="tile"><b>1B</b><span>fixed supply</span></div>
-      <div class="tile"><b>40%</b><span>curve / float</span></div>
-      <div class="tile"><b>45%</b><span>long lock 5–10y</span></div>
-      <div class="tile"><b>10%</b><span>treasury / burn</span></div>
-      <div class="tile"><b>5%</b><span>team vesting</span></div>
-      <div class="tile"><b>≥50%</b><span>burn target</span></div>
+  <section><h3>Tokenomics</h3><div class="grid">
+    <div class="tile"><b>1B</b><span>fixed supply</span></div>
+    <div class="tile"><b>40%</b><span>curve / float</span></div>
+    <div class="tile"><b>45%</b><span>long lock 5–10y</span></div>
+    <div class="tile"><b>10%</b><span>treasury / burn</span></div>
+    <div class="tile"><b>5%</b><span>team vesting</span></div>
+    <div class="tile"><b>≥50%</b><span>burn target</span></div>
+  </div></section>
+
+  <section><h3>Public commitment</h3><div class="card"><ul>
+    <li>Total supply fixed at 1B. Mint authority revoked. No remint.</li>
+    <li>Permanently burn until at least 50% (500M) is destroyed.</li>
+    <li>Burns via transfer fee + treasury buyback-and-burn.</li>
+    <li>Team 5% fully locked with public vesting (no TGE unlock).</li>
+    <li>45% long-term locked 5–10 years.</li>
+    <li>All major addresses and burn progress public on-chain.</li>
+    <li>High-risk experimental token only.</li>
+  </ul></div></section>
+
+  <section id="wallet"><h3>Creator wallet</h3><div class="card">
+    <p class="game-note" style="margin-bottom:10px">Public address for launch funding. Private key is not on this site.</p>
+    <div class="addr" id="addr">6h36p4RVjyhsZ5XmEusXykvx6w3nhcRLiDRafq18xnh1</div>
+    <div class="cta-row" style="justify-content:flex-start;margin-top:12px">
+      <button class="btn btn-primary" type="button" id="copyBtn">Copy address</button>
     </div>
-  </section>
+  </div></section>
 
-  <section>
-    <h3>Public commitment</h3>
-    <div class="card"><ul>
-      <li>Total supply fixed at 1B. Mint authority revoked. No remint.</li>
-      <li>Permanently burn until at least 50% (500M) is destroyed.</li>
-      <li>Burns via transfer fee + treasury buyback-and-burn.</li>
-      <li>Team 5% fully locked with public vesting (no TGE unlock).</li>
-      <li>45% long-term locked 5–10 years.</li>
-      <li>All major addresses and burn progress public on-chain.</li>
-      <li>High-risk experimental token only.</li>
-    </ul></div>
-  </section>
-
-  <section id="wallet">
-    <h3>Creator wallet</h3>
-    <div class="card">
-      <p class="game-note" style="margin-bottom:10px">Public address for launch funding. Private key is not on this site.</p>
-      <div class="addr" id="addr">6h36p4RVjyhsZ5XmEusXykvx6w3nhcRLiDRafq18xnh1</div>
-      <div class="cta-row" style="justify-content:flex-start;margin-top:12px">
-        <button class="btn btn-primary" type="button" id="copyBtn">Copy address</button>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <h3>Links</h3>
-    <div class="card"><ul>
-      <li><a href="https://www.stonkfun.xyz/launch">StonkFun launch</a></li>
-      <li><a href="https://app.streamflow.finance/">Streamflow</a></li>
-      <li><a href="https://app.squads.so/">Squads</a></li>
-      <li>Solscan mint: pending — will update at go-live</li>
-      <li><a href="https://github.com/talentsolutionsmyanmar-max/cinder-cndr">Site source</a></li>
-    </ul></div>
-  </section>
-
+  <section><h3>Links</h3><div class="card"><ul>
+    <li><a href="https://www.stonkfun.xyz/launch">StonkFun launch</a></li>
+    <li><a href="https://app.streamflow.finance/">Streamflow</a></li>
+    <li><a href="https://app.squads.so/">Squads</a></li>
+    <li>Solscan mint: pending — will update at go-live</li>
+    <li><a href="https://github.com/talentsolutionsmyanmar-max/cinder-cndr">Site source</a></li>
+  </ul></div></section>
   <footer>Cinder (CNDR) · experimental · not financial advice · © 2026</footer>
 </div>
-<script>
-(() => {
-  const stage = document.getElementById('stage');
-  const main = document.getElementById('main');
-  const fx = document.getElementById('fx');
-  const ctx = main.getContext('2d');
-  const fctx = fx.getContext('2d');
-  const fill = document.getElementById('burnFill');
-  const heatVal = document.getElementById('heatVal');
-  const comboVal = document.getElementById('comboVal');
-  const stokesVal = document.getElementById('stokesVal');
-  const meterText = document.getElementById('meterText');
 
-  let W=0,H=0,dpr=1, heat=0, combo=1, comboTimer=0, stokes=0, shake=0;
-  const particles=[], floaters=[], cracks=[];
-  for (let i=0;i<7;i++) cracks.push({a: Math.random()*Math.PI*2, len: .25+Math.random()*.45, w:1+Math.random()*2});
+<script type="module">
+import * as THREE from 'three';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-  function resize(){
-    const r = stage.getBoundingClientRect();
-    dpr = Math.min(window.devicePixelRatio||1, 2);
-    W = Math.max(1, Math.floor(r.width));
-    H = Math.max(1, Math.floor(r.height));
-    for (const c of [main, fx]) {
-      c.width = Math.floor(W*dpr); c.height = Math.floor(H*dpr);
-      c.style.width = W+'px'; c.style.height = H+'px';
-    }
-    ctx.setTransform(dpr,0,0,dpr,0,0);
-    fctx.setTransform(dpr,0,0,dpr,0,0);
-  }
-  window.addEventListener('resize', resize); resize();
+const stage = document.getElementById('stage');
+const heatVal = document.getElementById('heatVal');
+const comboVal = document.getElementById('comboVal');
+const stokesVal = document.getElementById('stokesVal');
+const fill = document.getElementById('burnFill');
+const meterText = document.getElementById('meterText');
 
-  function spawnBurst(x,y,n,power){
-    for (let i=0;i<n;i++){
-      const ang = -Math.PI/2 + (Math.random()-.5)*1.4;
-      const sp = (2+Math.random()*5)*power;
-      particles.push({
-        x,y, vx:Math.cos(ang)*sp, vy:Math.sin(ang)*sp,
-        life:1, decay:.012+Math.random()*.02,
-        size:1+Math.random()*3*power, kind: Math.random()<.2?'ash':'spark'
-      });
-    }
-  }
-  function floater(x,y,text){
-    floaters.push({x,y, text, life:1, vy:-.6-Math.random()*.4});
-  }
+let heat = 0, combo = 1, comboTimer = 0, stokes = 0, shake = 0, lastStoke = 0;
 
-  function stoke(clientX, clientY){
-    const r = stage.getBoundingClientRect();
-    const x = (clientX!=null? clientX : r.left+r.width/2) - r.left;
-    const y = (clientY!=null? clientY : r.top+r.height*.58) - r.top;
-    const now = performance.now();
-    if (now - (stoke._last||0) < 280) combo = Math.min(12, combo+1); else combo = 1;
-    stoke._last = now; comboTimer = 1.1;
-    const gain = (1.1 + Math.random()*.7) * (1 + (combo-1)*.08);
-    heat = Math.min(50, heat + gain);
-    stokes++; shake = Math.min(10, 3+combo*.4);
-    spawnBurst(W*.5 + (x-W*.5)*.15, H*.58, 18+combo*2, 1+combo*.08);
-    floater(x, y-10, `+${gain.toFixed(1)}`);
-    syncHud();
-  }
-  function reset(){
-    heat=0; combo=1; comboTimer=0; stokes=0; particles.length=0; floaters.length=0; shake=0;
-    syncHud();
-  }
-  function syncHud(){
-    heatVal.textContent = heat.toFixed(1)+'%';
-    comboVal.textContent = 'x'+combo;
-    stokesVal.textContent = String(stokes);
-    fill.style.width = (heat/50*100)+'%';
-    meterText.textContent = heat>=50 ? 'Visual 50% reached — fun only, not a real burn' : 'Toward visual 50%';
-  }
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: 'high-performance' });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+renderer.setClearColor(0x030304, 1);
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.15;
+stage.appendChild(renderer.domElement);
 
-  stage.addEventListener('pointerdown', e => { stage.setPointerCapture?.(e.pointerId); stoke(e.clientX,e.clientY); });
-  document.getElementById('stokeBtn').addEventListener('click', () => stoke());
-  document.getElementById('resetBtn').addEventListener('click', reset);
-  document.getElementById('copyBtn').addEventListener('click', async (e) => {
-    await navigator.clipboard.writeText(document.getElementById('addr').textContent.trim());
-    e.target.textContent = 'Copied';
-    setTimeout(()=>e.target.textContent='Copy address', 1200);
+const scene = new THREE.Scene();
+scene.fog = new THREE.FogExp2(0x030304, 0.045);
+
+const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
+camera.position.set(0, 1.35, 5.2);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.enablePan = false;
+controls.minDistance = 3.2;
+controls.maxDistance = 8;
+controls.maxPolarAngle = Math.PI * 0.62;
+controls.target.set(0, 0.35, 0);
+controls.autoRotate = true;
+controls.autoRotateSpeed = 0.55;
+
+const hemi = new THREE.HemisphereLight(0xffc8a0, 0x101018, 0.55);
+scene.add(hemi);
+const key = new THREE.DirectionalLight(0xffe0c8, 1.1);
+key.position.set(3, 6, 4);
+scene.add(key);
+const fillL = new THREE.DirectionalLight(0x4060ff, 0.25);
+fillL.position.set(-4, 2, -2);
+scene.add(fillL);
+const emberLight = new THREE.PointLight(0xff6a2a, 2.2, 12, 2);
+emberLight.position.set(0, 0.6, 0);
+scene.add(emberLight);
+
+// Ground ember disc
+const groundGeo = new THREE.CircleGeometry(2.4, 64);
+const groundMat = new THREE.MeshStandardMaterial({
+  color: 0x0a0a0c, emissive: 0xff4a12, emissiveIntensity: 0.18,
+  metalness: 0.2, roughness: 0.85, transparent: true, opacity: 0.95
+});
+const ground = new THREE.Mesh(groundGeo, groundMat);
+ground.rotation.x = -Math.PI / 2;
+ground.position.y = -1.15;
+scene.add(ground);
+
+const ringGeo = new THREE.RingGeometry(1.55, 1.72, 64);
+const ringMat = new THREE.MeshBasicMaterial({ color: 0xff6a2a, transparent: true, opacity: 0.35, side: THREE.DoubleSide });
+const ring = new THREE.Mesh(ringGeo, ringMat);
+ring.rotation.x = -Math.PI / 2;
+ring.position.y = -1.14;
+scene.add(ring);
+
+// Faceted crystal shard group
+const shard = new THREE.Group();
+scene.add(shard);
+
+function makeCrystal() {
+  // Outer dark crystal (elongated octahedron-ish)
+  const outer = new THREE.OctahedronGeometry(1.15, 0);
+  outer.scale(0.85, 1.55, 0.7);
+  const outerMat = new THREE.MeshPhysicalMaterial({
+    color: 0x1a1a20,
+    metalness: 0.85,
+    roughness: 0.22,
+    clearcoat: 1,
+    clearcoatRoughness: 0.15,
+    reflectivity: 0.9,
+    emissive: 0x2a1008,
+    emissiveIntensity: 0.25,
   });
+  const outerMesh = new THREE.Mesh(outer, outerMat);
+  shard.add(outerMesh);
 
-  // idle embers
-  function idleSpawn(){
-    if (particles.length < 90) {
-      particles.push({
-        x: W*.5+(Math.random()-.5)*W*.25, y: H*.72,
-        vx:(Math.random()-.5)*.4, vy: -(.4+Math.random()*1.2),
-        life:.7+Math.random()*.5, decay:.004+Math.random()*.006,
-        size:1+Math.random()*2, kind:'idle'
-      });
+  // Inner glowing core
+  const core = new THREE.OctahedronGeometry(0.55, 0);
+  core.scale(0.45, 1.7, 0.35);
+  const coreMat = new THREE.MeshStandardMaterial({
+    color: 0xff3a00,
+    emissive: 0xff6a2a,
+    emissiveIntensity: 2.2,
+    metalness: 0.1,
+    roughness: 0.35,
+    transparent: true,
+    opacity: 0.95,
+  });
+  const coreMesh = new THREE.Mesh(core, coreMat);
+  shard.add(coreMesh);
+
+  // Vertical seam (thin box)
+  const seam = new THREE.Mesh(
+    new THREE.BoxGeometry(0.06, 2.35, 0.06),
+    new THREE.MeshStandardMaterial({ color: 0xffd080, emissive: 0xff8a30, emissiveIntensity: 3.5, metalness: 0.2, roughness: 0.2 })
+  );
+  shard.add(seam);
+
+  // Edge wire glow
+  const edges = new THREE.EdgesGeometry(outer);
+  const line = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: 0xff9a4a, transparent: true, opacity: 0.55 }));
+  shard.add(line);
+
+  return { outerMat, coreMat, seam };
+}
+const mats = makeCrystal();
+shard.position.y = 0.2;
+
+// Spark particles
+const COUNT = 900;
+const positions = new Float32Array(COUNT * 3);
+const velocities = [];
+const colors = new Float32Array(COUNT * 3);
+const cTmp = new THREE.Color();
+for (let i = 0; i < COUNT; i++) {
+  positions[i*3] = (Math.random()-0.5)*0.2;
+  positions[i*3+1] = -1 + Math.random()*0.2;
+  positions[i*3+2] = (Math.random()-0.5)*0.2;
+  velocities.push({
+    vx: (Math.random()-0.5)*0.01,
+    vy: 0.004 + Math.random()*0.012,
+    vz: (Math.random()-0.5)*0.01,
+    life: Math.random(),
+  });
+  cTmp.setHSL(0.06 + Math.random()*0.05, 1, 0.45 + Math.random()*0.25);
+  colors[i*3]=cTmp.r; colors[i*3+1]=cTmp.g; colors[i*3+2]=cTmp.b;
+}
+const pGeo = new THREE.BufferGeometry();
+pGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+pGeo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+const pMat = new THREE.PointsMaterial({
+  size: 0.06, vertexColors: true, transparent: true, opacity: 0.9,
+  depthWrite: false, blending: THREE.AdditiveBlending, sizeAttenuation: true
+});
+const points = new THREE.Points(pGeo, pMat);
+scene.add(points);
+
+function burst(n = 80, power = 1) {
+  const pos = pGeo.attributes.position.array;
+  let spawned = 0;
+  for (let i = 0; i < COUNT && spawned < n; i++) {
+    if (velocities[i].life < 0.15 || Math.random() < 0.35) {
+      pos[i*3] = (Math.random()-0.5)*0.35;
+      pos[i*3+1] = 0.2 + Math.random()*0.4;
+      pos[i*3+2] = (Math.random()-0.5)*0.35;
+      velocities[i].vx = (Math.random()-0.5)*0.08*power;
+      velocities[i].vy = (0.02 + Math.random()*0.06)*power;
+      velocities[i].vz = (Math.random()-0.5)*0.08*power;
+      velocities[i].life = 0.7 + Math.random()*0.5;
+      spawned++;
     }
   }
+  pGeo.attributes.position.needsUpdate = true;
+}
 
-  function drawShard(c, cx, cy, scale, t, heatN){
-    c.save();
-    c.translate(cx,cy);
-    // outer glow
-    const g = c.createRadialGradient(0,0,10*scale, 0,0,160*scale);
-    const inten = .25 + heatN*.75;
-    g.addColorStop(0, `rgba(255,140,40,${.55*inten})`);
-    g.addColorStop(.35, `rgba(255,70,20,${.22*inten})`);
-    g.addColorStop(1, 'rgba(0,0,0,0)');
-    c.fillStyle = g; c.beginPath(); c.arc(0,10*scale,170*scale,0,Math.PI*2); c.fill();
+// Post bloom
+const composer = new EffectComposer(renderer);
+composer.addPass(new RenderPass(scene, camera));
+const bloom = new UnrealBloomPass(new THREE.Vector2(1,1), 1.15, 0.55, 0.2);
+composer.addPass(bloom);
 
-    // body
-    c.beginPath();
-    c.moveTo(0, -90*scale);
-    c.lineTo(52*scale, -10*scale);
-    c.lineTo(38*scale, 78*scale);
-    c.lineTo(-36*scale, 78*scale);
-    c.lineTo(-54*scale, -8*scale);
-    c.closePath();
-    const body = c.createLinearGradient(-40*scale,-90*scale,40*scale,80*scale);
-    body.addColorStop(0,'#3a3a40'); body.addColorStop(.5,'#1b1b1f'); body.addColorStop(1,'#0e0e10');
-    c.fillStyle = body; c.fill();
-    c.strokeStyle = `rgba(255,140,60,${.25+inten*.4})`; c.lineWidth = 2; c.stroke();
+function resize() {
+  const w = stage.clientWidth || 1;
+  const h = stage.clientHeight || 1;
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+  renderer.setSize(w, h, false);
+  composer.setSize(w, h);
+  bloom.setSize(w, h);
+}
+window.addEventListener('resize', resize);
+resize();
 
-    // cracks
-    c.save();
-    c.globalCompositeOperation = 'lighter';
-    for (const cr of cracks){
-      const pulse = .5 + .5*Math.sin(t*3 + cr.a*3);
-      c.strokeStyle = `rgba(255,${120+80*heatN},40,${(.35+heatN*.5)*pulse})`;
-      c.lineWidth = cr.w;
-      c.beginPath();
-      c.moveTo(Math.cos(cr.a)*8*scale, Math.sin(cr.a)*8*scale - 20*scale);
-      c.lineTo(Math.cos(cr.a)*90*scale*cr.len, Math.sin(cr.a)*90*scale*cr.len + 10*scale);
-      c.stroke();
-    }
-    // core seam
-    c.strokeStyle = `rgba(255,200,80,${.45+inten*.5})`;
-    c.lineWidth = 3+heatN*2;
-    c.shadowColor = '#ff6a2a'; c.shadowBlur = 18+heatN*20;
-    c.beginPath(); c.moveTo(0,-70*scale); c.lineTo(0,70*scale); c.stroke();
-    c.restore();
+function syncHud() {
+  heatVal.textContent = heat.toFixed(1) + '%';
+  comboVal.textContent = 'x' + combo;
+  stokesVal.textContent = String(stokes);
+  fill.style.width = (heat / 50 * 100) + '%';
+  meterText.textContent = heat >= 50
+    ? 'Visual 50% reached — fun only, not a real burn'
+    : 'Toward visual 50%';
+}
 
-    // ground ember
-    c.fillStyle = `rgba(255,90,20,${.08+heatN*.12})`;
-    c.beginPath(); c.ellipse(0, 95*scale, 120*scale, 22*scale, 0, 0, Math.PI*2); c.fill();
-    c.restore();
-  }
-
-  let last = performance.now();
-  function frame(now){
-    const dt = Math.min(.033, (now-last)/1000); last = now;
-    const t = now/1000;
-    comboTimer = Math.max(0, comboTimer-dt);
-    if (comboTimer<=0) combo=1;
-    shake = Math.max(0, shake - dt*18);
-    idleSpawn();
-
-    const sx = (Math.random()-.5)*shake, sy = (Math.random()-.5)*shake;
-    const heatN = heat/50;
-
-    // fx layer: soft trails
-    fctx.fillStyle = 'rgba(5,5,6,.22)';
-    fctx.fillRect(0,0,W,H);
-
-    ctx.clearRect(0,0,W,H);
-    // vignette bg
-    const bg = ctx.createRadialGradient(W/2,H*.55,20, W/2,H*.55, Math.max(W,H)*.7);
-    bg.addColorStop(0,'#17110d'); bg.addColorStop(1,'#050506');
-    ctx.fillStyle = bg; ctx.fillRect(0,0,W,H);
-
-    ctx.save(); ctx.translate(sx,sy);
-    drawShard(ctx, W*.5, H*.55, Math.min(W,H)/420, t, heatN);
-
-    // particles on main
-    for (let i=particles.length-1;i>=0;i--){
-      const p = particles[i];
-      p.x += p.vx; p.y += p.vy; p.vy -= .03; p.life -= p.decay;
-      if (p.life<=0){ particles.splice(i,1); continue; }
-      const a = Math.max(0,p.life);
-      if (p.kind==='ash'){
-        ctx.fillStyle = `rgba(160,150,140,${a*.5})`;
-      } else {
-        ctx.fillStyle = `rgba(255,${140+Math.random()*90},40,${a})`;
-        ctx.shadowColor = '#ff6a2a'; ctx.shadowBlur = 8;
-      }
-      ctx.beginPath(); ctx.arc(p.x,p.y,p.size,0,Math.PI*2); ctx.fill();
-      ctx.shadowBlur = 0;
-      // also to fx trail
-      fctx.fillStyle = `rgba(255,120,40,${a*.35})`;
-      fctx.beginPath(); fctx.arc(p.x,p.y,p.size*1.2,0,Math.PI*2); fctx.fill();
-    }
-
-    for (let i=floaters.length-1;i>=0;i--){
-      const f = floaters[i];
-      f.y += f.vy; f.life -= .02;
-      if (f.life<=0){ floaters.splice(i,1); continue; }
-      ctx.globalAlpha = f.life; ctx.fillStyle = '#ffd29a';
-      ctx.font = '700 16px '+getComputedStyle(document.body).fontFamily;
-      ctx.fillText(f.text, f.x, f.y); ctx.globalAlpha = 1;
-    }
-    ctx.restore();
-
-    // heat ring
-    ctx.save();
-    ctx.translate(W*.5 + sx, H*.55 + sy);
-    ctx.strokeStyle = `rgba(255,140,40,${.15+heatN*.35})`;
-    ctx.lineWidth = 3;
-    ctx.beginPath(); ctx.arc(0,0, Math.min(W,H)*.28, -Math.PI/2, -Math.PI/2 + Math.PI*2*(heat/50)); ctx.stroke();
-    ctx.restore();
-
-    comboVal.textContent = 'x'+combo;
-    requestAnimationFrame(frame);
-  }
+function stoke() {
+  const now = performance.now();
+  if (now - lastStoke < 320) combo = Math.min(12, combo + 1);
+  else combo = 1;
+  lastStoke = now;
+  comboTimer = 1.15;
+  const gain = (1.2 + Math.random() * 0.8) * (1 + (combo - 1) * 0.09);
+  heat = Math.min(50, heat + gain);
+  stokes++;
+  shake = Math.min(0.18, 0.05 + combo * 0.012);
+  burst(50 + combo * 8, 1 + combo * 0.1);
+  controls.autoRotateSpeed = 1.4 + combo * 0.15;
   syncHud();
+}
+
+function reset() {
+  heat = 0; combo = 1; comboTimer = 0; stokes = 0; shake = 0;
+  controls.autoRotateSpeed = 0.55;
+  syncHud();
+}
+
+document.getElementById('stokeBtn').addEventListener('click', stoke);
+document.getElementById('resetBtn').addEventListener('click', reset);
+stage.addEventListener('pointerdown', (e) => {
+  // only stoke on quick tap without heavy drag
+  const t0 = performance.now();
+  const x0 = e.clientX, y0 = e.clientY;
+  const up = (ev) => {
+    stage.removeEventListener('pointerup', up);
+    const dt = performance.now() - t0;
+    const dist = Math.hypot(ev.clientX - x0, ev.clientY - y0);
+    if (dt < 220 && dist < 10) stoke();
+  };
+  stage.addEventListener('pointerup', up);
+});
+document.getElementById('copyBtn').addEventListener('click', async (e) => {
+  await navigator.clipboard.writeText(document.getElementById('addr').textContent.trim());
+  e.target.textContent = 'Copied';
+  setTimeout(() => e.target.textContent = 'Copy address', 1200);
+});
+
+let last = performance.now();
+function frame(now) {
+  const dt = Math.min(0.033, (now - last) / 1000);
+  last = now;
+  comboTimer = Math.max(0, comboTimer - dt);
+  if (comboTimer <= 0) combo = 1;
+  shake = Math.max(0, shake - dt * 0.55);
+  controls.autoRotateSpeed += (0.55 - controls.autoRotateSpeed) * 0.02;
+
+  const heatN = heat / 50;
+  mats.coreMat.emissiveIntensity = 1.6 + heatN * 3.2 + Math.sin(now * 0.006) * 0.35;
+  mats.outerMat.emissiveIntensity = 0.15 + heatN * 0.55;
+  emberLight.intensity = 1.6 + heatN * 4.5 + Math.sin(now * 0.005) * 0.3;
+  groundMat.emissiveIntensity = 0.12 + heatN * 0.55;
+  ringMat.opacity = 0.2 + heatN * 0.55;
+  bloom.strength = 0.85 + heatN * 1.1;
+  shard.rotation.y += dt * 0.35;
+  shard.position.y = 0.2 + Math.sin(now * 0.0022) * 0.08;
+
+  // particles
+  const pos = pGeo.attributes.position.array;
+  for (let i = 0; i < COUNT; i++) {
+    const v = velocities[i];
+    pos[i*3] += v.vx;
+    pos[i*3+1] += v.vy;
+    pos[i*3+2] += v.vz;
+    v.vy += 0.00015;
+    v.life -= dt * 0.35;
+    if (v.life <= 0 || pos[i*3+1] > 3.5) {
+      pos[i*3] = (Math.random()-0.5) * (0.6 + heatN);
+      pos[i*3+1] = -1.05;
+      pos[i*3+2] = (Math.random()-0.5) * (0.6 + heatN);
+      v.vx = (Math.random()-0.5) * 0.015;
+      v.vy = 0.006 + Math.random() * 0.018 + heatN * 0.01;
+      v.vz = (Math.random()-0.5) * 0.015;
+      v.life = 0.5 + Math.random() * 0.8;
+    }
+  }
+  pGeo.attributes.position.needsUpdate = true;
+
+  // camera shake
+  if (shake > 0) {
+    camera.position.x += (Math.random() - 0.5) * shake;
+    camera.position.y += (Math.random() - 0.5) * shake * 0.6;
+  }
+
+  controls.update();
+  composer.render();
+  comboVal.textContent = 'x' + combo;
   requestAnimationFrame(frame);
-})();
+}
+syncHud();
+requestAnimationFrame(frame);
 </script>
 </body>
 </html>
