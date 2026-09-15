@@ -97,7 +97,7 @@ footer{margin-top:56px;text-align:center;color:var(--muted);font-size:13px}
     <div class="game-top">
       <div>
         <h2>Stoke the Cinder</h2>
-        <p class="game-note">3D · Fun only · PREP · does not burn real supply · no prizes · no APY</p>
+        <p class="game-note">Our logo · 3D · Fun only · PREP · does not burn real supply · no prizes · no APY</p>
       </div>
       <div class="hud">
         <div class="statchip"><b id="heatVal">0.0%</b><span>heat</span></div>
@@ -231,58 +231,74 @@ ring.rotation.x = -Math.PI / 2;
 ring.position.y = -1.14;
 scene.add(ring);
 
-// Faceted crystal shard group
+// Our ember-shard LOGO as the 3D hero (not a generic crystal)
 const shard = new THREE.Group();
 scene.add(shard);
 
-function makeCrystal() {
-  // Outer dark crystal (elongated octahedron-ish)
-  const outer = new THREE.OctahedronGeometry(1.15, 0);
-  outer.scale(0.85, 1.55, 0.7);
-  const outerMat = new THREE.MeshPhysicalMaterial({
-    color: 0x1a1a20,
-    metalness: 0.85,
-    roughness: 0.22,
-    clearcoat: 1,
-    clearcoatRoughness: 0.15,
-    reflectivity: 0.9,
-    emissive: 0x2a1008,
-    emissiveIntensity: 0.25,
-  });
-  const outerMesh = new THREE.Mesh(outer, outerMat);
-  shard.add(outerMesh);
+const mats = { glowMat: null, logoMat: null, backMat: null };
 
-  // Inner glowing core
-  const core = new THREE.OctahedronGeometry(0.55, 0);
-  core.scale(0.45, 1.7, 0.35);
-  const coreMat = new THREE.MeshStandardMaterial({
-    color: 0xff3a00,
-    emissive: 0xff6a2a,
-    emissiveIntensity: 2.2,
-    metalness: 0.1,
-    roughness: 0.35,
-    transparent: true,
-    opacity: 0.95,
-  });
-  const coreMesh = new THREE.Mesh(core, coreMat);
-  shard.add(coreMesh);
+const loader = new THREE.TextureLoader();
+const logoTex = loader.load('assets/cinder-shard-3d.png', (tex) => {
+  tex.colorSpace = THREE.SRGBColorSpace;
+  tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
+});
 
-  // Vertical seam (thin box)
-  const seam = new THREE.Mesh(
-    new THREE.BoxGeometry(0.06, 2.35, 0.06),
-    new THREE.MeshStandardMaterial({ color: 0xffd080, emissive: 0xff8a30, emissiveIntensity: 3.5, metalness: 0.2, roughness: 0.2 })
-  );
-  shard.add(seam);
+// Soft ember disc behind the logo (gives depth + bloom fuel)
+const glowGeo = new THREE.CircleGeometry(1.55, 64);
+const glowMat = new THREE.MeshBasicMaterial({
+  color: 0xff6a2a, transparent: true, opacity: 0.35,
+  blending: THREE.AdditiveBlending, depthWrite: false
+});
+const glow = new THREE.Mesh(glowGeo, glowMat);
+glow.position.z = -0.18;
+shard.add(glow);
+mats.glowMat = glowMat;
 
-  // Edge wire glow
-  const edges = new THREE.EdgesGeometry(outer);
-  const line = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: 0xff9a4a, transparent: true, opacity: 0.55 }));
-  shard.add(line);
+// Slightly larger warm halo
+const halo = new THREE.Mesh(
+  new THREE.CircleGeometry(2.1, 64),
+  new THREE.MeshBasicMaterial({
+    color: 0xff3a00, transparent: true, opacity: 0.12,
+    blending: THREE.AdditiveBlending, depthWrite: false
+  })
+);
+halo.position.z = -0.22;
+shard.add(halo);
 
-  return { outerMat, coreMat, seam };
-}
-const mats = makeCrystal();
-shard.position.y = 0.2;
+// Dark plate behind logo for thickness / 3D card feel
+const back = new THREE.Mesh(
+  new THREE.PlaneGeometry(2.55, 2.55),
+  new THREE.MeshStandardMaterial({
+    color: 0x0a0a0c, metalness: 0.6, roughness: 0.35,
+    emissive: 0xff4a12, emissiveIntensity: 0.15
+  })
+);
+back.position.z = -0.06;
+shard.add(back);
+mats.backMat = back.material;
+
+// Logo plane (our official shard mark)
+const logoMat = new THREE.MeshBasicMaterial({
+  map: logoTex, transparent: true, side: THREE.DoubleSide,
+  depthWrite: false
+});
+const logo = new THREE.Mesh(new THREE.PlaneGeometry(2.4, 2.4), logoMat);
+logo.position.z = 0.02;
+shard.add(logo);
+mats.logoMat = logoMat;
+
+// Thin ember rim ring around logo
+const rim = new THREE.Mesh(
+  new THREE.RingGeometry(1.28, 1.36, 64),
+  new THREE.MeshBasicMaterial({
+    color: 0xffb357, transparent: true, opacity: 0.45,
+    side: THREE.DoubleSide, blending: THREE.AdditiveBlending, depthWrite: false
+  })
+);
+rim.position.z = 0.04;
+shard.add(rim);
+
+shard.position.y = 0.35;
 
 // Spark particles
 const COUNT = 900;
@@ -410,14 +426,16 @@ function frame(now) {
   controls.autoRotateSpeed += (0.55 - controls.autoRotateSpeed) * 0.02;
 
   const heatN = heat / 50;
-  mats.coreMat.emissiveIntensity = 1.6 + heatN * 3.2 + Math.sin(now * 0.006) * 0.35;
-  mats.outerMat.emissiveIntensity = 0.15 + heatN * 0.55;
-  emberLight.intensity = 1.6 + heatN * 4.5 + Math.sin(now * 0.005) * 0.3;
+  if (mats.glowMat) mats.glowMat.opacity = 0.22 + heatN * 0.55 + Math.sin(now * 0.005) * 0.05;
+  if (mats.backMat) mats.backMat.emissiveIntensity = 0.12 + heatN * 0.7;
+  emberLight.intensity = 1.8 + heatN * 4.8 + Math.sin(now * 0.005) * 0.35;
   groundMat.emissiveIntensity = 0.12 + heatN * 0.55;
   ringMat.opacity = 0.2 + heatN * 0.55;
-  bloom.strength = 0.85 + heatN * 1.1;
-  shard.rotation.y += dt * 0.35;
-  shard.position.y = 0.2 + Math.sin(now * 0.0022) * 0.08;
+  bloom.strength = 0.95 + heatN * 1.25;
+  // gentle 3D tumble — logo stays readable
+  shard.rotation.y = Math.sin(now * 0.0007) * 0.45;
+  shard.rotation.x = Math.sin(now * 0.0005) * 0.12;
+  shard.position.y = 0.35 + Math.sin(now * 0.0022) * 0.08;
 
   // particles
   const pos = pGeo.attributes.position.array;
