@@ -102,7 +102,19 @@ ul{margin:0;padding-left:18px} li{margin:9px 0;color:#e8e0d8;line-height:1.45}
 .links a:hover{border-color:var(--ember)}
 footer{margin-top:64px;text-align:center;color:var(--muted);font-size:12px;font-family:var(--mono);letter-spacing:.08em}
 a{color:var(--ember2)}
-@media (max-width:640px){#stage{aspect-ratio:4/5}.hero .logo{width:84px;height:84px;border-radius:24px}.nav-links{display:none}}
+@media (max-width:640px){#stage{aspect-ratio:4/5}.hero .logo{width:84px;height:84px;border-radius:24px}
+.nav{flex-wrap:wrap}.nav-links{flex-wrap:wrap;gap:10px 12px;justify-content:flex-end;max-width:100%}
+.nav-links a{font-size:11px}
+.play-fab{display:inline-flex!important}}
+.play-fab{display:none;position:fixed;right:16px;bottom:18px;z-index:30;padding:14px 18px;border-radius:999px;
+  background:linear-gradient(135deg,var(--ember),#ff8f3d);color:#140a04;font-weight:800;text-decoration:none;
+  box-shadow:0 12px 36px rgba(255,106,42,.45);letter-spacing:.04em;font-size:13px}
+.about-links{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:14px 0 0}
+.about-links a{padding:10px 14px;border-radius:999px;border:1px solid var(--stroke);font-size:12px;font-weight:800;
+  letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:var(--fg);font-family:var(--mono)}
+.about-links a.primary{background:linear-gradient(135deg,var(--ember),#ff8f3d);color:#140a04;border-color:transparent;
+  box-shadow:0 10px 28px rgba(255,106,42,.28)}
+.game-shell .game-kicker{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ember2);margin:0 0 4px}
 </style>
 </head>
 <body>
@@ -110,12 +122,11 @@ a{color:var(--ember2)}
   <div class="nav">
     <div class="brand"><img src="assets/cinder-cndr-logo.png" alt=""/> CINDER</div>
     <div class="nav-links">
-      <a href="#game">Play</a>
-      <a href="#omics">Tokenomics</a>
-      <a href="#proofs">Proofs</a>
-      <a href="burn.html">Burns</a>
+      <a href="https://talentsolutionsmyanmar-max.github.io/cinder-cndr/">Website</a>
       <a href="https://x.com/Tommy_Burma" target="_blank" rel="noopener">X</a>
+      <a href="burn.html">Burns</a>
       <a href="https://www.stonkfun.xyz/token/GDTGrAZZLZLkjNYuVPfvCUBFBS7xNGHDeoV3GTbTmW2P" target="_blank" rel="noopener">Trade</a>
+      <a href="#game">Play</a>
     </div>
     <div class="pill">LIVE · 2026</div>
   </div>
@@ -124,10 +135,15 @@ a{color:var(--ember2)}
     <img class="logo" src="assets/cinder-cndr-logo.png" alt="Cinder logo"/>
     <h1>CINDER<br/><span>$CNDR</span></h1>
     <p class="tagline">Burn until half the supply is gone. Locks public. Mint and freeze revoked. No fake price. No APY.</p>
+    <div class="about-links" aria-label="About links">
+      <a class="primary" href="https://talentsolutionsmyanmar-max.github.io/cinder-cndr/">Website</a>
+      <a href="https://x.com/Tommy_Burma" target="_blank" rel="noopener">X</a>
+      <a href="burn.html">Burn tracker</a>
+    </div>
     <div class="cta-row">
-      <a class="btn btn-primary" href="#game">Stoke the Cinder</a>
+      <a class="btn btn-primary" href="#game">Play · Stoke the Cinder</a>
       <a class="btn btn-ghost" href="#wallet">Creator wallet</a>
-      <a class="btn btn-ghost" href="burn.html">Burn tracker</a>
+      <a class="btn btn-ghost" href="https://www.stonkfun.xyz/token/GDTGrAZZLZLkjNYuVPfvCUBFBS7xNGHDeoV3GTbTmW2P" target="_blank" rel="noopener">Trade</a>
     </div>
   </header>
   <div class="risk"><strong>High-risk experimental token.</strong> Only risk capital you can afford to lose. Not financial advice. Not ReferTRM / TRM / any hiring brand.</div>
@@ -135,6 +151,7 @@ a{color:var(--ember2)}
   <div class="game-shell" id="game">
     <div class="game-top">
       <div>
+        <p class="game-kicker">Game · fun only · no prizes</p>
         <h2>Stoke the Cinder</h2>
         <p class="game-note">3D logo · fun only · no prizes · stokes ≠ on-chain burn · real burns = <a href="burn.html">Burn tracker</a> Solscan rows</p>
       </div>
@@ -230,16 +247,19 @@ a{color:var(--ember2)}
     <p class="eyebrow">Outbound</p>
     <h3>Links</h3>
     <div class="links">
+      <a href="https://talentsolutionsmyanmar-max.github.io/cinder-cndr/">Website</a>
+      <a href="https://x.com/Tommy_Burma" target="_blank" rel="noopener">X</a>
       <a href="burn.html">Burn tracker</a>
-      <a href="https://www.stonkfun.xyz/launch">StonkFun</a>
-      <a href="https://app.streamflow.finance/">Streamflow</a>
-      <a href="https://app.squads.so/">Squads</a>
+      <a href="https://www.stonkfun.xyz/token/GDTGrAZZLZLkjNYuVPfvCUBFBS7xNGHDeoV3GTbTmW2P" target="_blank" rel="noopener">Trade</a>
+      <a href="https://solscan.io/token/GDTGrAZZLZLkjNYuVPfvCUBFBS7xNGHDeoV3GTbTmW2P" target="_blank" rel="noopener">Solscan</a>
       <a href="https://github.com/talentsolutionsmyanmar-max/cinder-cndr">Source</a>
-      <span class="chip">Solscan · GDTG…mW2P</span>
+      <span class="chip">No Telegram yet</span>
     </div>
   </section>
   <footer>Cinder ($CNDR) · experimental · not financial advice · 2026</footer>
 </div>
+
+<a class="play-fab" href="#game" aria-label="Play Stoke the Cinder">Play</a>
 
 <script type="module">
 
