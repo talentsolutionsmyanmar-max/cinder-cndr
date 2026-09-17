@@ -76,6 +76,11 @@ section{margin:40px 0} h3{margin:0 0 14px;font-size:18px;color:var(--ember2);let
 .tile span{color:var(--muted);font-size:13px}
 ul{margin:0;padding-left:18px} li{margin:8px 0;color:#e8e0d8}
 .addr{font-family:var(--mono);font-size:clamp(12px,2.5vw,15px);word-break:break-all;padding:14px;border-radius:14px;background:#0b0b0d;border:1px solid var(--stroke);color:var(--ember2)}
+.proof{width:100%;border-collapse:collapse}
+.proof th,.proof td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--stroke);font-size:13px}
+.proof th{color:var(--muted);font-weight:600;width:34%}
+.proof .tba{color:var(--muted);font-family:var(--mono);font-size:12px}
+.proof .val{font-family:var(--mono);font-size:12px;word-break:break-all;color:var(--ember2)}
 footer{margin-top:56px;text-align:center;color:var(--muted);font-size:13px}
 @media (max-width:640px){#stage{aspect-ratio:4/5}.hero .logo{width:92px;height:92px;border-radius:22px}}
 </style>
@@ -93,6 +98,7 @@ footer{margin-top:56px;text-align:center;color:var(--muted);font-size:13px}
     <div class="cta-row">
       <a class="btn btn-primary" href="#game">Play Stoke the Cinder</a>
       <a class="btn btn-ghost" href="#wallet">Creator wallet</a>
+      <a class="btn btn-ghost" href="#proofs">On-chain proofs</a>
       <a class="btn btn-ghost" href="burn.html">Burn tracker</a>
     </div>
   </header>
@@ -126,10 +132,10 @@ footer{margin-top:56px;text-align:center;color:var(--muted);font-size:13px}
   <section><h3>How it works</h3><div class="card"><ul>
     <li>Token-2022 transfer fee at launch: <strong>3%</strong> on StonkFun reward mode (platform max; sealed design wanted 5–8%).</li>
     <li>Quote mint: <strong>SOL</strong>.</li>
-    <li>Treasury buyback-and-burn as volume appears.</li>
+    <li>Treasury <strong>buyback-and-burn</strong> is the real supply shrink. The 3% pad fee is platform withhold, not a Cinder burn.</li>
     <li>Public locks (Streamflow / multi-sig + timelock).</li>
     <li>Mint authority and freeze authority revoked at launch.</li>
-    <li>Buy path after go-live: StonkFun token page (mint TBA). No mint yet.</li>
+    <li>Buy path after go-live: StonkFun token page (CA TBA until mint).</li>
   </ul></div></section>
 
   <section><h3>Tokenomics</h3><div class="grid">
@@ -144,12 +150,28 @@ footer{margin-top:56px;text-align:center;color:var(--muted);font-size:13px}
   <section><h3>Public commitment</h3><div class="card"><ul>
     <li>Total supply fixed at 1B. Mint authority revoked. No remint.</li>
     <li>Permanently burn until at least 50% (500M) is destroyed.</li>
-    <li>Burns via transfer fee + treasury buyback-and-burn.</li>
+    <li>Burns that count: Squads buyback-and-burn with Solscan rows. Pad 3% fee is not a burn.</li>
     <li>Team 5% fully locked with public vesting (no TGE unlock).</li>
     <li>45% long-term locked 5–10 years.</li>
     <li>All major addresses and burn progress public on-chain.</li>
     <li>High-risk experimental token only.</li>
   </ul></div></section>
+
+  <section id="proofs"><h3>On-chain proofs</h3>
+    <div class="card">
+      <p class="game-note" style="margin-bottom:12px">Empty until Tom/KoKo <code>[SIG]</code>. No invented addresses.</p>
+      <table class="proof">
+        <tr><th>CA / mint</th><td class="tba" id="p-ca">TBA — no mint</td></tr>
+        <tr><th>StonkFun token</th><td class="tba" id="p-stonk">TBA</td></tr>
+        <tr><th>Mint revoked</th><td class="tba" id="p-mintrev">TBA</td></tr>
+        <tr><th>Freeze revoked</th><td class="tba" id="p-freezerev">TBA</td></tr>
+        <tr><th>Team 5% Streamflow</th><td class="tba" id="p-team">TBA</td></tr>
+        <tr><th>45% long lock</th><td class="tba" id="p-lock">TBA</td></tr>
+        <tr><th>Squads 10%</th><td class="tba" id="p-squads">TBA</td></tr>
+        <tr><th>Quote / fee</th><td class="val">SOL · 3% reward (platform withhold ≠ burn)</td></tr>
+      </table>
+    </div>
+  </section>
 
   <section id="wallet"><h3>Creator wallet</h3><div class="card">
     <p class="game-note" style="margin-bottom:10px">Public address for launch funding. Private key is not on this site.</p>
@@ -479,6 +501,30 @@ function frame(now) {
 }
 syncHud();
 requestAnimationFrame(frame);
+</script>
+<script>
+function fillProof(id, url, label) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  if (!url) return;
+  el.className = 'val';
+  el.innerHTML = '<a href="'+url+'">'+(label || url)+'</a>';
+}
+fetch('proofs.json').then(r=>r.json()).then(d=>{
+  const ca = d.ca || d.mint;
+  if (ca) {
+    const el = document.getElementById('p-ca');
+    el.className = 'val';
+    const href = d.mint_solscan || ('https://solscan.io/token/'+ca);
+    el.innerHTML = '<a href="'+href+'">'+ca+'</a>';
+  }
+  fillProof('p-stonk', d.stonkfun_token, 'StonkFun');
+  fillProof('p-mintrev', d.mint_revoked_tx && ('https://solscan.io/tx/'+d.mint_revoked_tx), 'mint revoke tx');
+  fillProof('p-freezerev', d.freeze_revoked_tx && ('https://solscan.io/tx/'+d.freeze_revoked_tx), 'freeze revoke tx');
+  fillProof('p-team', d.streamflow_team, 'Streamflow team');
+  fillProof('p-lock', d.long_lock, 'long lock');
+  fillProof('p-squads', d.squads, 'Squads');
+}).catch(()=>{});
 </script>
 </body>
 </html>

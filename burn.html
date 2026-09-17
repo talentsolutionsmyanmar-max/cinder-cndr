@@ -2,35 +2,57 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>Cinder burn tracker</title>
+<link rel="icon" href="assets/cinder-cndr-logo.png"/>
 <style>
-:root{--bg:#121212;--fg:#f5f0ea;--muted:#9a948c;--ember:#ff6a2a;--line:#2a2a2a}
-body{margin:0;font-family:ui-sans-serif,system-ui,sans-serif;background:var(--bg);color:var(--fg);line-height:1.5}
-.wrap{max-width:720px;margin:0 auto;padding:40px 20px}
-a{color:#ff8a3d}
-.stat{font-size:42px;color:var(--ember);margin:8px 0}
-.bar{height:14px;background:#1a1a1a;border:1px solid var(--line);border-radius:999px;overflow:hidden}
-.bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ember),#ffd27a)}
+:root{--bg:#070708;--fg:#f7f1ea;--muted:#9b938a;--ember:#ff6a2a;--ember2:#ffb357;--stroke:rgba(255,255,255,.08);--font:ui-sans-serif,system-ui,sans-serif;--mono:ui-monospace,Menlo,Consolas,monospace}
+body{margin:0;font-family:var(--font);color:var(--fg);background:radial-gradient(900px 420px at 50% -10%,rgba(255,90,20,.18),transparent 55%),var(--bg);line-height:1.5}
+.wrap{width:min(920px,100%);margin:0 auto;padding:28px 16px 80px}
+a{color:var(--ember2);text-decoration:none}a:hover{text-decoration:underline}
+h1{letter-spacing:.06em}
 .tag{color:var(--muted);font-size:14px}
+.stat{font-size:clamp(32px,6vw,48px);color:var(--ember);margin:8px 0}
+.bar{height:14px;background:rgba(255,255,255,.06);border:1px solid var(--stroke);border-radius:999px;overflow:hidden}
+.bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff3d00,var(--ember),var(--ember2))}
+.warn{margin:18px 0;padding:14px;border:1px solid rgba(255,106,42,.3);border-radius:14px;color:#f0d2bf;font-size:14px}
+table{width:100%;border-collapse:collapse;margin-top:22px;font-size:13px}
+th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--stroke);font-family:var(--mono);word-break:break-all}
+th{color:var(--muted);font-weight:600}
+.empty{color:var(--muted);padding:20px 8px}
 </style>
 </head>
 <body>
 <main class="wrap">
   <p class="tag"><a href="index.html">← Cinder</a></p>
   <h1>Burn tracker</h1>
-  <p class="tag">Target 500,000,000 CNDR (50%). Verifiable vs Solscan after mint.</p>
+  <p class="tag">Target 500,000,000 CNDR (50% of 1B). Only Solscan-backed rows count.</p>
   <div class="stat" id="pct">0%</div>
   <div class="bar"><i id="fill"></i></div>
-  <p id="nums" class="tag">0 / 500,000,000 burned · PREP — no mint</p>
+  <p id="nums" class="tag">0 / 500,000,000 burned</p>
+  <div class="warn"><strong>3% transfer fee is not a burn.</strong> StonkFun reward withhold goes to platform authority. Real shrink = Squads buyback-and-burn txs listed below. The Stoke game does not count.</div>
+  <table>
+    <thead><tr><th>When (MMT)</th><th>Amount</th><th>Solscan</th><th>Note</th></tr></thead>
+    <tbody id="rows"><tr><td class="empty" colspan="4">PREP — no burns yet</td></tr></tbody>
+  </table>
 </main>
 <script>
 fetch("burn.json").then(r=>r.json()).then(d=>{
+  const burned = Number(d.burned_cndr)||0;
+  const target = Number(d.target_cndr)||5e8;
   const pct = Number(d.pct_of_supply)||0;
-  document.getElementById("pct").textContent = pct.toFixed(2)+"% of supply";
-  document.getElementById("fill").style.width = Math.min(100, (Number(d.burned_cndr)||0)/5e6)+"%";
+  document.getElementById("pct").textContent = pct.toFixed(4)+"% of supply";
+  document.getElementById("fill").style.width = Math.min(100, burned/target*100)+"%";
   document.getElementById("nums").textContent =
-    (d.burned_cndr||0).toLocaleString()+" / "+(d.target_cndr||5e8).toLocaleString()+" burned · "+(d.status||"");
+    burned.toLocaleString()+" / "+target.toLocaleString()+" burned · "+(d.status||"");
+  const rows = d.rows||[];
+  const tb = document.getElementById("rows");
+  if (!rows.length) return;
+  tb.innerHTML = rows.map(r => {
+    const sig = r.solscan_tx||"";
+    const href = "https://solscan.io/tx/"+encodeURIComponent(sig);
+    return `<tr><td>${r.date_mmt||""}</td><td>${Number(r.amount_cndr||0).toLocaleString()}</td><td><a href="${href}">${sig.slice(0,8)}…</a></td><td>${r.note||""}</td></tr>`;
+  }).join("");
 }).catch(()=>{});
 </script>
 </body>

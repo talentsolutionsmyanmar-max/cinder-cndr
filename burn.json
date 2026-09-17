@@ -4,6 +4,8 @@
   "supply": 1000000000,
   "burned_cndr": 0,
   "pct_of_supply": 0,
-  "updated_mmt": "2026-09-17T11:17:00+06:30",
-  "status": "PREP — no mint"
+  "status": "PREP — no mint. Zero burns recorded. Do not invent rows.",
+  "fee_is_not_burn": true,
+  "updated_mmt": "2026-09-17T12:30:00+06:30",
+  "rows": []
 }

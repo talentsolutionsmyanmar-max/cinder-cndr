@@ -2,3 +2,4 @@ wallet/
 *.json
 !package.json
 !burn.json
+!proofs.json
