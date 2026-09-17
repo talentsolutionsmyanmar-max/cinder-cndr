@@ -30,11 +30,11 @@ th{color:var(--muted);font-weight:500;letter-spacing:.08em;text-transform:upperc
 <main class="wrap">
   <p class="kicker"><a href="index.html">← Cinder</a></p>
   <h1>Burn tracker</h1>
-  <p class="tag">Target 500,000,000 CNDR (50% of 1B). Only Solscan-backed rows count.</p>
+  <p class="tag">Destination supply ~21,000,000 CNDR (burn ~979,000,000 of 1B). Cadence 1M/day once treasury funded. Only Solscan-backed rows count.</p>
   <div class="stat" id="pct">0%</div>
   <div class="bar"><i id="fill"></i></div>
-  <p id="nums" class="tag">0 / 500,000,000 burned</p>
-  <div class="warn"><strong>3% transfer fee is not a burn.</strong> StonkFun reward withhold goes to platform authority. <strong>Phase 1:</strong> direct treasury burns toward ≥50% supply (Solscan rows below) — not buyback. Buyback-and-burn only after real float/volume. The Stoke game does not count.</div>
+  <p id="nums" class="tag">0 / 979,000,000 burned</p>
+  <div class="warn"><strong>3% transfer fee is not a burn.</strong> StonkFun reward withhold goes to platform authority. <strong>Phase 1:</strong> direct treasury burns toward destination ~21M supply (burn ~979M), cadence <strong>1M/day</strong> once a controllable treasury ATA is funded — not buyback. Buyback-and-burn only after real float/volume. The Stoke game does not count. <strong>Blocked today:</strong> creator holds 0 CNDR; LaunchLab curve vault is not claimable for burns.</div>
   <table>
     <thead><tr><th>When (MMT)</th><th>Amount</th><th>Solscan</th><th>Note</th></tr></thead>
     <tbody id="rows"><tr><td class="empty" colspan="4">PREP — no burns yet</td></tr></tbody>
@@ -43,7 +43,7 @@ th{color:var(--muted);font-weight:500;letter-spacing:.08em;text-transform:upperc
 <script>
 fetch("burn.json").then(r=>r.json()).then(d=>{
   const burned = Number(d.burned_cndr)||0;
-  const target = Number(d.target_cndr)||5e8;
+  const target = Number(d.target_cndr)||979e6;
   const pct = Number(d.pct_of_supply)||0;
   document.getElementById("pct").textContent = pct.toFixed(4)+"% of supply";
   document.getElementById("fill").style.width = Math.min(100, burned/target*100)+"%";

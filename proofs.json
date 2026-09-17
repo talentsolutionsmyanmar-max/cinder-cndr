@@ -6,7 +6,7 @@
   "fee_bps": 300,
   "fee_note": "StonkFun 3% reward withhold is platform authority. It is not an automatic Cinder burn.",
   "supply": 1000000000,
-  "burn_target": 500000000,
+  "burn_target": 979000000,
   "mint": "GDTGrAZZLZLkjNYuVPfvCUBFBS7xNGHDeoV3GTbTmW2P",
   "ca": "GDTGrAZZLZLkjNYuVPfvCUBFBS7xNGHDeoV3GTbTmW2P",
   "mint_solscan": "https://solscan.io/token/GDTGrAZZLZLkjNYuVPfvCUBFBS7xNGHDeoV3GTbTmW2P",
@@ -16,12 +16,15 @@
   "streamflow_team": null,
   "long_lock": null,
   "squads": null,
-  "updated_mmt": "2026-09-17T23:37:19+06:30",
+  "updated_mmt": "2026-09-17T23:46:45+06:30",
   "create_tx": "5aCMFevWN2rVTj1sGGY5uomvGcJevJgyUV77HPj3T7PUjDdbbt6w4hyaFSQLJK58TCyFLyHqZcMvqpkQdGFi6jnH",
   "create_solscan": "https://solscan.io/tx/5aCMFevWN2rVTj1sGGY5uomvGcJevJgyUV77HPj3T7PUjDdbbt6w4hyaFSQLJK58TCyFLyHqZcMvqpkQdGFi6jnH",
   "x": "https://x.com/Tommy_Burma",
   "mint_authority": "unset_at_create",
   "freeze_authority": "unset_at_create",
   "mint_revoked_note": "Mint and freeze authority not set at LaunchLab create (see create_tx).",
-  "burn_path": "Phase 1: direct treasury burn toward \u226550% supply (NOT buyback). Buyback-and-burn only after real float/volume. StonkFun 3% fee \u2260 Cinder burn. Stoke game \u2260 on-chain burn."
+  "burn_path": "Phase 1: direct treasury burn toward destination supply ~21M (burn ~979M). NOT buyback while float is thin \u2014 buyback-and-burn only after real float/volume. Cadence 1M/day once a controllable treasury ATA is funded. StonkFun 3% fee \u2260 Cinder burn. Stoke game \u2260 on-chain burn. LaunchLab currently holds sellable/residual inventory in curve vault \u2014 creator ATA is 0; no claimable allocated share (totalAllocatedShare=0).",
+  "destination_supply": 21000000,
+  "initial_supply": 1000000000,
+  "burn_cadence": "1M CNDR per day (optional one-time kickoff 10\u201350M when treasury funded)"
 }
