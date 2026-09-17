@@ -1,5 +1,5 @@
 {
-  "status": "PREP",
+  "status": "LIVE",
   "ticker": "CNDR",
   "name": "Cinder",
   "quote": "SOL",
@@ -7,14 +7,16 @@
   "fee_note": "StonkFun 3% reward withhold is platform authority. It is not an automatic Cinder burn.",
   "supply": 1000000000,
   "burn_target": 500000000,
-  "mint": null,
-  "ca": null,
-  "mint_solscan": null,
-  "stonkfun_token": null,
+  "mint": "GDTGrAZZLZLkjNYuVPfvCUBFBS7xNGHDeoV3GTbTmW2P",
+  "ca": "GDTGrAZZLZLkjNYuVPfvCUBFBS7xNGHDeoV3GTbTmW2P",
+  "mint_solscan": "https://solscan.io/token/GDTGrAZZLZLkjNYuVPfvCUBFBS7xNGHDeoV3GTbTmW2P",
+  "stonkfun_token": "https://www.stonkfun.xyz/token/GDTGrAZZLZLkjNYuVPfvCUBFBS7xNGHDeoV3GTbTmW2P",
   "mint_revoked_tx": null,
   "freeze_revoked_tx": null,
   "streamflow_team": null,
   "long_lock": null,
   "squads": null,
-  "updated_mmt": "2026-09-17T12:30:00+06:30"
+  "updated_mmt": "2026-09-17T20:13:34+06:30",
+  "create_tx": "5aCMFevWN2rVTj1sGGY5uomvGcJevJgyUV77HPj3T7PUjDdbbt6w4hyaFSQLJK58TCyFLyHqZcMvqpkQdGFi6jnH",
+  "create_solscan": "https://solscan.io/tx/5aCMFevWN2rVTj1sGGY5uomvGcJevJgyUV77HPj3T7PUjDdbbt6w4hyaFSQLJK58TCyFLyHqZcMvqpkQdGFi6jnH"
 }
