@@ -136,7 +136,7 @@ a{color:var(--ember2)}
     <div class="game-top">
       <div>
         <h2>Stoke the Cinder</h2>
-        <p class="game-note">3D logo · fun only · does not burn real supply · no prizes</p>
+        <p class="game-note">3D logo · fun only · no prizes · stokes ≠ on-chain burn · real burns = <a href="burn.html">Burn tracker</a> Solscan rows</p>
       </div>
       <div class="hud">
         <div class="statchip"><b id="heatVal">0.0%</b><span>heat</span></div>
@@ -147,7 +147,7 @@ a{color:var(--ember2)}
     <div id="stage" aria-label="3D Stoke the Cinder"></div>
     <div class="game-bottom">
       <div class="meter-wrap">
-        <div class="meter-label"><span id="meterText">Toward visual 50%</span><span>goal</span></div>
+        <div class="meter-label"><span id="meterText">Visual heat only — stokes ≠ on-chain burn</span><span>fun</span></div>
         <div class="meter"><i id="burnFill"></i></div>
       </div>
       <div class="controls">
@@ -451,8 +451,8 @@ function syncHud() {
   stokesVal.textContent = String(stokes);
   fill.style.width = (heat / 50 * 100) + '%';
   meterText.textContent = heat >= 50
-    ? 'Visual 50% reached — fun only, not a real burn'
-    : 'Toward visual 50%';
+    ? 'Visual 50% — stokes only, not an on-chain burn'
+    : 'Visual heat only — stokes ≠ on-chain burn';
 }
 
 function stoke() {
