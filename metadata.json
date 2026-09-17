@@ -1,7 +1,7 @@
 {
   "name": "Cinder",
   "symbol": "CNDR",
-  "description": "Cinder (CNDR) is a personal experimental Solana Token-2022 in the Grok ecosystem. Burn until half the supply is gone via treasury buyback-and-burn (public Solscan). Quote: SOL. StonkFun reward mode 3% is platform withhold \u2014 not an automatic Cinder burn. Mint and freeze authority revoked. High-risk; not financial advice. Not affiliated with hiring or recruitment brands.",
+  "description": "Cinder (CNDR) is a personal experimental Solana Token-2022 in the Grok ecosystem. Phase 1: burn toward half the supply via direct treasury burns (public Solscan) \u2014 not buyback while float is thin. Buyback-and-burn only after real float/volume. Quote: SOL. StonkFun reward mode 3% is platform withhold \u2014 not an automatic Cinder burn. The Stoke game is fun only and does not burn supply. Mint and freeze authority revoked. High-risk; not financial advice. Not affiliated with hiring or recruitment brands.",
   "image": "https://talentsolutionsmyanmar-max.github.io/cinder-cndr/assets/cinder-cndr-logo.png",
   "external_url": "https://talentsolutionsmyanmar-max.github.io/cinder-cndr/",
   "extensions": {
