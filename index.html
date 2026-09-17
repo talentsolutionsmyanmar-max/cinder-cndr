@@ -114,6 +114,8 @@ a{color:var(--ember2)}
       <a href="#omics">Tokenomics</a>
       <a href="#proofs">Proofs</a>
       <a href="burn.html">Burns</a>
+      <a href="https://x.com/Tommy_Burma" target="_blank" rel="noopener">X</a>
+      <a href="https://www.stonkfun.xyz/token/GDTGrAZZLZLkjNYuVPfvCUBFBS7xNGHDeoV3GTbTmW2P" target="_blank" rel="noopener">Trade</a>
     </div>
     <div class="pill">LIVE · 2026</div>
   </div>
@@ -197,10 +199,11 @@ a{color:var(--ember2)}
     <h3>On-chain proofs</h3>
     <p class="game-note" style="margin-bottom:14px">Empty until Tom/KoKo [SIG]. No invented addresses.</p>
     <div class="proofs">
-      <div class="proof-card"><span>CA / mint</span><div class="tba" id="p-ca">TBA — no mint</div></div>
-      <div class="proof-card"><span>StonkFun token</span><div class="tba" id="p-stonk">TBA</div></div>
-      <div class="proof-card"><span>Mint revoked</span><div class="tba" id="p-mintrev">TBA</div></div>
-      <div class="proof-card"><span>Freeze revoked</span><div class="tba" id="p-freezerev">TBA</div></div>
+      <div class="proof-card"><span>CA / mint</span><div class="val" id="p-ca"><a href="https://solscan.io/token/GDTGrAZZLZLkjNYuVPfvCUBFBS7xNGHDeoV3GTbTmW2P">GDTGrAZZLZLkjNYuVPfvCUBFBS7xNGHDeoV3GTbTmW2P</a></div></div>
+      <div class="proof-card"><span>StonkFun token</span><div class="val" id="p-stonk"><a href="https://www.stonkfun.xyz/token/GDTGrAZZLZLkjNYuVPfvCUBFBS7xNGHDeoV3GTbTmW2P">StonkFun</a></div></div>
+      <div class="proof-card"><span>Mint authority</span><div class="val" id="p-mintrev"><a href="https://solscan.io/tx/5aCMFevWN2rVTj1sGGY5uomvGcJevJgyUV77HPj3T7PUjDdbbt6w4hyaFSQLJK58TCyFLyHqZcMvqpkQdGFi6jnH">unset at create</a></div></div>
+      <div class="proof-card"><span>Freeze authority</span><div class="val" id="p-freezerev"><a href="https://solscan.io/tx/5aCMFevWN2rVTj1sGGY5uomvGcJevJgyUV77HPj3T7PUjDdbbt6w4hyaFSQLJK58TCyFLyHqZcMvqpkQdGFi6jnH">unset at create</a></div></div>
+      <div class="proof-card"><span>X</span><div class="val" id="p-x"><a href="https://x.com/Tommy_Burma">@Tommy_Burma</a></div></div>
       <div class="proof-card"><span>Team 5% Streamflow</span><div class="tba" id="p-team">TBA</div></div>
       <div class="proof-card"><span>45% long lock</span><div class="tba" id="p-lock">TBA</div></div>
       <div class="proof-card"><span>Squads 10%</span><div class="tba" id="p-squads">TBA</div></div>
@@ -229,7 +232,7 @@ a{color:var(--ember2)}
       <a href="https://app.streamflow.finance/">Streamflow</a>
       <a href="https://app.squads.so/">Squads</a>
       <a href="https://github.com/talentsolutionsmyanmar-max/cinder-cndr">Source</a>
-      <span class="chip">Solscan mint · pending</span>
+      <span class="chip">Solscan · GDTG…mW2P</span>
     </div>
   </section>
   <footer>Cinder ($CNDR) · experimental · not financial advice · 2026</footer>
@@ -552,19 +555,21 @@ function fillProof(id, url, label) {
   if (!el) return;
   if (!url) return;
   el.className = 'val';
-  el.innerHTML = '<a href="'+url+'">'+(label || url)+'</a>';
+  el.innerHTML = '<a href="'+url+'" target="_blank" rel="noopener">'+(label || url)+'</a>';
 }
-fetch('proofs.json').then(r=>r.json()).then(d=>{
+fetch('proofs.json?ts=' + Date.now()).then(r=>r.json()).then(d=>{
   const ca = d.ca || d.mint;
   if (ca) {
     const el = document.getElementById('p-ca');
     el.className = 'val';
     const href = d.mint_solscan || ('https://solscan.io/token/'+ca);
-    el.innerHTML = '<a href="'+href+'">'+ca+'</a>';
+    el.innerHTML = '<a href="'+href+'" target="_blank" rel="noopener">'+ca+'</a>';
   }
   fillProof('p-stonk', d.stonkfun_token, 'StonkFun');
-  fillProof('p-mintrev', d.mint_revoked_tx && ('https://solscan.io/tx/'+d.mint_revoked_tx), 'mint revoke tx');
-  fillProof('p-freezerev', d.freeze_revoked_tx && ('https://solscan.io/tx/'+d.freeze_revoked_tx), 'freeze revoke tx');
+  const createHref = d.create_solscan || (d.create_tx && ('https://solscan.io/tx/'+d.create_tx));
+  fillProof('p-mintrev', d.mint_revoked_tx ? ('https://solscan.io/tx/'+d.mint_revoked_tx) : createHref, d.mint_revoked_tx ? 'mint revoke tx' : 'unset at create');
+  fillProof('p-freezerev', d.freeze_revoked_tx ? ('https://solscan.io/tx/'+d.freeze_revoked_tx) : createHref, d.freeze_revoked_tx ? 'freeze revoke tx' : 'unset at create');
+  fillProof('p-x', d.x, d.x && d.x.includes('Tommy_Burma') ? '@Tommy_Burma' : 'X');
   fillProof('p-team', d.streamflow_team, 'Streamflow team');
   fillProof('p-lock', d.long_lock, 'long lock');
   fillProof('p-squads', d.squads, 'Squads');

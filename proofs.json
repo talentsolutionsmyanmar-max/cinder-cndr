@@ -19,5 +19,8 @@
   "updated_mmt": "2026-09-17T20:57:35+06:30",
   "create_tx": "5aCMFevWN2rVTj1sGGY5uomvGcJevJgyUV77HPj3T7PUjDdbbt6w4hyaFSQLJK58TCyFLyHqZcMvqpkQdGFi6jnH",
   "create_solscan": "https://solscan.io/tx/5aCMFevWN2rVTj1sGGY5uomvGcJevJgyUV77HPj3T7PUjDdbbt6w4hyaFSQLJK58TCyFLyHqZcMvqpkQdGFi6jnH",
-  "x": "https://x.com/Tommy_Burma"
+  "x": "https://x.com/Tommy_Burma",
+  "mint_authority": "unset_at_create",
+  "freeze_authority": "unset_at_create",
+  "mint_revoked_note": "Mint and freeze authority not set at LaunchLab create (see create_tx)."
 }
