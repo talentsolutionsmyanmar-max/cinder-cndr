@@ -16,7 +16,7 @@
   "streamflow_team": null,
   "long_lock": null,
   "squads": null,
-  "updated_mmt": "2026-09-18T01:08:19+06:30",
+  "updated_mmt": "2026-09-18T01:10:56+06:30",
   "create_tx": "5aCMFevWN2rVTj1sGGY5uomvGcJevJgyUV77HPj3T7PUjDdbbt6w4hyaFSQLJK58TCyFLyHqZcMvqpkQdGFi6jnH",
   "create_solscan": "https://solscan.io/tx/5aCMFevWN2rVTj1sGGY5uomvGcJevJgyUV77HPj3T7PUjDdbbt6w4hyaFSQLJK58TCyFLyHqZcMvqpkQdGFi6jnH",
   "x": "https://x.com/Tommy_Burma",
@@ -28,7 +28,7 @@
   "initial_supply": 1000000000,
   "burn_cadence": "1M CNDR per day (optional one-time kickoff 10\u201350M when treasury funded)",
   "allocation_note": "40% curve / 45% long-lock / 10% treasury / 5% team was sealed INTENT at mint. On-chain LaunchLab totalLockedAmount=0 and totalAllocatedShare=0 \u2014 locks/vesting not funded yet. Phase 1 burns PAUSED until controllable treasury ATA exists. Destination ~21M / 1M/day once funded. Do not burn from curve vault or fee ATA. Do not buy CNDR with creator SOL until Principal names a budget.",
-  "burn_status": "PAUSED (Cinder) \u2014 Rangoon RGN LIVE for claim-then-burn post-grad",
+  "burn_status": "PAUSED (Cinder) \u2014 RGN is correction mint; claim-then-burn post-grad only",
   "rangoon": {
     "status": "LIVE",
     "ticker": "RGN",
@@ -41,7 +41,10 @@
     "sell": 500000000,
     "lock": 300000000,
     "migrate": 200000000,
-    "burn_note": "Claim-then-burn post-graduation only. Not buyback Phase 1.",
-    "cinder_note": "Cinder (CNDR) burns remain PAUSED (no controllable inventory). Rangoon covers CNDR holders later per Principal/CoS."
-  }
+    "burn_note": "Claim-then-burn post-graduation only. No pre-grad claim/burn.",
+    "cinder_note": "Cinder burns PAUSED. RGN is the correction mint. CNDR holders cover planned from RGN 300M locked bag after claim (post-grad). No fake Cinder claim.",
+    "role": "correction_mint",
+    "path_split": "500M sell / 300M lock / 200M migrate"
+  },
+  "cinder_correction": "Cinder burns PAUSED. Rangoon (RGN) is the correction mint. Planned CNDR holder cover comes from RGN locked bag after creator claim post-graduation. No fake claim on Cinder."
 }

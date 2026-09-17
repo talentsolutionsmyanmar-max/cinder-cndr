@@ -10,6 +10,9 @@
   "sell": 500000000,
   "lock": 300000000,
   "migrate": 200000000,
-  "burn_note": "Claim-then-burn post-graduation only. Not buyback Phase 1.",
-  "cinder_note": "Cinder (CNDR) burns remain PAUSED (no controllable inventory). Rangoon covers CNDR holders later per Principal/CoS."
+  "burn_note": "Claim-then-burn post-graduation only. No pre-grad claim/burn.",
+  "cinder_note": "Cinder burns PAUSED. RGN is the correction mint. CNDR holders cover planned from RGN 300M locked bag after claim (post-grad). No fake Cinder claim.",
+  "role": "correction_mint",
+  "path_split": "500M sell / 300M lock / 200M migrate",
+  "ca": "FA2kwPUPceCdS75HKa8o3JT6c9edj81APfU1zjMHeENv"
 }
