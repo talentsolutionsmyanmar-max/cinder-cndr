@@ -2,7 +2,7 @@
   "name": "Rangoon",
   "symbol": "RGN",
   "description": "Rangoon (RGN) is a personal experimental Solana Token-2022 (Raydium LaunchLab Path A2). 1B supply \u00b7 500M curve sell \u00b7 300M creator vesting lock (claim after graduation) \u00b7 200M migrate residual. Phase 1 burns = claim-then-burn post-grad only \u2014 not buyback. High-risk; not financial advice. Not affiliated with hiring or recruitment brands.",
-  "image": "https://talentsolutionsmyanmar-max.github.io/cinder-cndr/assets/cinder-cndr-logo.png",
+  "image": "https://talentsolutionsmyanmar-max.github.io/cinder-cndr/assets/rangoon-rgn-logo.png",
   "external_url": "https://talentsolutionsmyanmar-max.github.io/cinder-cndr/",
   "extensions": {
     "website": "https://talentsolutionsmyanmar-max.github.io/cinder-cndr/",
@@ -12,7 +12,7 @@
     "category": "image",
     "files": [
       {
-        "uri": "https://talentsolutionsmyanmar-max.github.io/cinder-cndr/assets/cinder-cndr-logo.png",
+        "uri": "https://talentsolutionsmyanmar-max.github.io/cinder-cndr/assets/rangoon-rgn-logo.png",
         "type": "image/png"
       }
     ]
