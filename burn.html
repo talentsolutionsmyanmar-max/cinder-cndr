@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Cinder burn tracker</title>
+<style>
+:root{--bg:#121212;--fg:#f5f0ea;--muted:#9a948c;--ember:#ff6a2a;--line:#2a2a2a}
+body{margin:0;font-family:ui-sans-serif,system-ui,sans-serif;background:var(--bg);color:var(--fg);line-height:1.5}
+.wrap{max-width:720px;margin:0 auto;padding:40px 20px}
+a{color:#ff8a3d}
+.stat{font-size:42px;color:var(--ember);margin:8px 0}
+.bar{height:14px;background:#1a1a1a;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ember),#ffd27a)}
+.tag{color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <p class="tag"><a href="index.html">← Cinder</a></p>
+  <h1>Burn tracker</h1>
+  <p class="tag">Target 500,000,000 CNDR (50%). Verifiable vs Solscan after mint.</p>
+  <div class="stat" id="pct">0%</div>
+  <div class="bar"><i id="fill"></i></div>
+  <p id="nums" class="tag">0 / 500,000,000 burned · PREP — no mint</p>
+</main>
+<script>
+fetch("burn.json").then(r=>r.json()).then(d=>{
+  const pct = Number(d.pct_of_supply)||0;
+  document.getElementById("pct").textContent = pct.toFixed(2)+"% of supply";
+  document.getElementById("fill").style.width = Math.min(100, (Number(d.burned_cndr)||0)/5e6)+"%";
+  document.getElementById("nums").textContent =
+    (d.burned_cndr||0).toLocaleString()+" / "+(d.target_cndr||5e8).toLocaleString()+" burned · "+(d.status||"");
+}).catch(()=>{});
+</script>
+</body>
+</html>

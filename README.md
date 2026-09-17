@@ -1,4 +1,7 @@
+# Cinder (CNDR)
 
+Public PREP site for an experimental Solana Token-2022.
 
-## Ownership
-See ../OWNERSHIP.md — creator address is public; private key stays on Omarchy only.
+Live: https://talentsolutionsmyanmar-max.github.io/cinder-cndr/
+
+Creator address is public. Private key is **not** in this repo.
