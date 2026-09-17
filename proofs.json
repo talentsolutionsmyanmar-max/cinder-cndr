@@ -16,7 +16,7 @@
   "streamflow_team": null,
   "long_lock": null,
   "squads": null,
-  "updated_mmt": "2026-09-17T23:46:45+06:30",
+  "updated_mmt": "2026-09-17T23:48:08+06:30",
   "create_tx": "5aCMFevWN2rVTj1sGGY5uomvGcJevJgyUV77HPj3T7PUjDdbbt6w4hyaFSQLJK58TCyFLyHqZcMvqpkQdGFi6jnH",
   "create_solscan": "https://solscan.io/tx/5aCMFevWN2rVTj1sGGY5uomvGcJevJgyUV77HPj3T7PUjDdbbt6w4hyaFSQLJK58TCyFLyHqZcMvqpkQdGFi6jnH",
   "x": "https://x.com/Tommy_Burma",
@@ -26,5 +26,7 @@
   "burn_path": "Phase 1: direct treasury burn toward destination supply ~21M (burn ~979M). NOT buyback while float is thin \u2014 buyback-and-burn only after real float/volume. Cadence 1M/day once a controllable treasury ATA is funded. StonkFun 3% fee \u2260 Cinder burn. Stoke game \u2260 on-chain burn. LaunchLab currently holds sellable/residual inventory in curve vault \u2014 creator ATA is 0; no claimable allocated share (totalAllocatedShare=0).",
   "destination_supply": 21000000,
   "initial_supply": 1000000000,
-  "burn_cadence": "1M CNDR per day (optional one-time kickoff 10\u201350M when treasury funded)"
+  "burn_cadence": "1M CNDR per day (optional one-time kickoff 10\u201350M when treasury funded)",
+  "allocation_note": "40% curve / 45% long-lock / 10% treasury / 5% team was sealed INTENT at mint. On-chain LaunchLab totalLockedAmount=0 and totalAllocatedShare=0 \u2014 locks/vesting not funded yet. Phase 1 burns PAUSED until controllable treasury ATA exists. Destination ~21M / 1M/day once funded. Do not burn from curve vault or fee ATA. Do not buy CNDR with creator SOL until Principal names a budget.",
+  "burn_status": "PAUSED \u2014 no controllable inventory"
 }

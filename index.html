@@ -180,8 +180,8 @@ a{color:var(--ember2)}
     <div class="card"><ul>
       <li>Token-2022 transfer fee at launch: <strong>3%</strong> on StonkFun reward mode (platform max).</li>
       <li>Quote mint: <strong>SOL</strong>.</li>
-      <li><strong>Phase 1 burn:</strong> direct treasury burn toward destination supply <strong>~21M</strong> (burn ~979M). Cadence <strong>1M CNDR/day</strong> once treasury ATA funded (optional kickoff 10–50M). Not buyback while float is thin. The 3% pad fee is platform withhold, not a Cinder burn. Stoke does not burn.</li>
-      <li>Public locks (Streamflow / multi-sig + timelock). Mint and freeze revoked at launch.</li>
+      <li><strong>Phase 1 burn (PAUSED):</strong> destination supply <strong>~21M</strong> (burn ~979M), cadence <strong>1M CNDR/day</strong> once a controllable treasury ATA is funded (optional kickoff 10–50M). <strong>Paused until inventory exists</strong> — creator holds 0 CNDR; curve vault is not burnable. Not buyback; do not spend creator SOL on CNDR unless Principal names a budget. 3% pad fee ≠ burn. Stoke ≠ burn.</li>
+      <li>Public locks (Streamflow / Squads) are <strong>intent</strong> — on-chain <code>totalLockedAmount=0</code> / <code>totalAllocatedShare=0</code> at mint. Not funded yet. Mint and freeze unset at create.</li>
       <li>Buy path: StonkFun token page — CA in proofs below / proofs.json.</li>
     </ul></div>
   </section>
@@ -198,7 +198,7 @@ a{color:var(--ember2)}
       <div class="tile"><b>~21M</b><span>destination supply</span></div>
     </div>
     <div class="card" style="margin-top:14px">
-      <p class="game-note" style="margin:0;color:#e8e0d8;line-height:1.5">Early top-10 concentration (~90%+) is expected — bonding curve / float plus planned long-lock, treasury, and team buckets, with few holders so far. Not claiming fair distribution yet. See Tokenomics above and <a href="proofs.json">proofs.json</a>.</p>
+      <p class="game-note" style="margin:0;color:#e8e0d8;line-height:1.5"><strong>Honesty:</strong> 40% / 45% / 10% / 5% above was <strong>sealed intent</strong>, not on-chain at mint — LaunchLab <code>totalLockedAmount=0</code>, <code>totalAllocatedShare=0</code>; almost all remaining inventory sits in the bonding-curve vault (not a claimable creator treasury). Early top-10 concentration is expected. Phase 1 burns are <strong>paused</strong> until a controllable treasury ATA exists; destination remains ~21M supply / 1M per day once funded. Not claiming fair distribution or live vesting yet. See <a href="proofs.json">proofs.json</a> · <a href="burn.html">Burn tracker</a>.</p>
     </div>
   </section>
 
@@ -207,17 +207,17 @@ a{color:var(--ember2)}
     <h3>Commitment</h3>
     <div class="card"><ul>
       <li>Total supply fixed at 1B. Mint authority revoked. No remint.</li>
-      <li>Permanently burn until ~21M supply remains (~979M destroyed). Publish every burn tx on the Burn tracker.</li>
-      <li>Burns that count: Phase 1 direct treasury burns with Solscan rows (toward ~21M remaining). Buyback-and-burn later when float exists. Pad 3% fee is not a burn. Stoke game does not count.</li>
-      <li>Team 5% fully locked with public vesting (no TGE unlock).</li>
-      <li>45% long-term locked 5–10 years. All major addresses public on-chain.</li>
+      <li>Target: burn until ~21M supply remains (~979M destroyed), 1M/day once funded. Publish every burn tx on the Burn tracker. <strong>Paused now</strong> — no controllable inventory.</li>
+      <li>Burns that count (when resumed): Phase 1 direct treasury burns with Solscan rows. Buyback-and-burn later when float exists and Principal names SOL budget. Pad 3% fee is not a burn. Stoke game does not count.</li>
+      <li>Team 5% + long-lock 45% + treasury 10%: <strong>intent</strong> (Streamflow/Squads) — <strong>not locked on-chain yet</strong> (<code>total_locked=0</code> at mint).</li>
+      <li>No fake burns. No burn from curve vault or fee ATA.</li>
     </ul></div>
   </section>
 
   <section id="proofs">
     <p class="eyebrow">Verify</p>
     <h3>On-chain proofs</h3>
-    <p class="game-note" style="margin-bottom:14px">Empty until Tom/KoKo [SIG]. No invented addresses.</p>
+    <p class="game-note" style="margin-bottom:14px">Streamflow / Squads / vesting empty until Principal [SIG]. CA is LIVE. No invented lock addresses. Burns paused until treasury ATA funded.</p>
     <div class="proofs">
       <div class="proof-card"><span>CA / mint</span><div class="val" id="p-ca"><a href="https://solscan.io/token/GDTGrAZZLZLkjNYuVPfvCUBFBS7xNGHDeoV3GTbTmW2P">GDTGrAZZLZLkjNYuVPfvCUBFBS7xNGHDeoV3GTbTmW2P</a></div></div>
       <div class="proof-card"><span>StonkFun token</span><div class="val" id="p-stonk"><a href="https://www.stonkfun.xyz/token/GDTGrAZZLZLkjNYuVPfvCUBFBS7xNGHDeoV3GTbTmW2P">StonkFun</a></div></div>
