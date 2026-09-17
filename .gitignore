@@ -3,3 +3,5 @@ wallet/
 !package.json
 !burn.json
 !proofs.json
+
+!metadata.json
