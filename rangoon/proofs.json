@@ -1,0 +1,15 @@
+{
+  "status": "LIVE",
+  "ticker": "RGN",
+  "name": "Rangoon",
+  "mint": "FA2kwPUPceCdS75HKa8o3JT6c9edj81APfU1zjMHeENv",
+  "create_and_vest_tx": "3E5GLhrm6R67pMPb9TB9xF7TQtQ6dTYMBt9uomgycbddE32E4u6PJWnXjPbRH4z7F6nwCNWPxA3esvrbfKsE1gzS",
+  "pool": "GN2qCobPr5mRcnH41hBVu9wA8c6JhEfR5qVgxgVU67Gy",
+  "vesting_record": "DHs62kRxvoUHqhbPisitj8fdiq6farzZfGxder5drSDt",
+  "path": "A2",
+  "sell": 500000000,
+  "lock": 300000000,
+  "migrate": 200000000,
+  "burn_note": "Claim-then-burn post-graduation only. Not buyback Phase 1.",
+  "cinder_note": "Cinder (CNDR) burns remain PAUSED (no controllable inventory). Rangoon covers CNDR holders later per Principal/CoS."
+}

@@ -16,7 +16,7 @@
   "streamflow_team": null,
   "long_lock": null,
   "squads": null,
-  "updated_mmt": "2026-09-17T23:48:08+06:30",
+  "updated_mmt": "2026-09-18T01:08:19+06:30",
   "create_tx": "5aCMFevWN2rVTj1sGGY5uomvGcJevJgyUV77HPj3T7PUjDdbbt6w4hyaFSQLJK58TCyFLyHqZcMvqpkQdGFi6jnH",
   "create_solscan": "https://solscan.io/tx/5aCMFevWN2rVTj1sGGY5uomvGcJevJgyUV77HPj3T7PUjDdbbt6w4hyaFSQLJK58TCyFLyHqZcMvqpkQdGFi6jnH",
   "x": "https://x.com/Tommy_Burma",
@@ -28,5 +28,20 @@
   "initial_supply": 1000000000,
   "burn_cadence": "1M CNDR per day (optional one-time kickoff 10\u201350M when treasury funded)",
   "allocation_note": "40% curve / 45% long-lock / 10% treasury / 5% team was sealed INTENT at mint. On-chain LaunchLab totalLockedAmount=0 and totalAllocatedShare=0 \u2014 locks/vesting not funded yet. Phase 1 burns PAUSED until controllable treasury ATA exists. Destination ~21M / 1M/day once funded. Do not burn from curve vault or fee ATA. Do not buy CNDR with creator SOL until Principal names a budget.",
-  "burn_status": "PAUSED \u2014 no controllable inventory"
+  "burn_status": "PAUSED (Cinder) \u2014 Rangoon RGN LIVE for claim-then-burn post-grad",
+  "rangoon": {
+    "status": "LIVE",
+    "ticker": "RGN",
+    "name": "Rangoon",
+    "mint": "FA2kwPUPceCdS75HKa8o3JT6c9edj81APfU1zjMHeENv",
+    "create_and_vest_tx": "3E5GLhrm6R67pMPb9TB9xF7TQtQ6dTYMBt9uomgycbddE32E4u6PJWnXjPbRH4z7F6nwCNWPxA3esvrbfKsE1gzS",
+    "pool": "GN2qCobPr5mRcnH41hBVu9wA8c6JhEfR5qVgxgVU67Gy",
+    "vesting_record": "DHs62kRxvoUHqhbPisitj8fdiq6farzZfGxder5drSDt",
+    "path": "A2",
+    "sell": 500000000,
+    "lock": 300000000,
+    "migrate": 200000000,
+    "burn_note": "Claim-then-burn post-graduation only. Not buyback Phase 1.",
+    "cinder_note": "Cinder (CNDR) burns remain PAUSED (no controllable inventory). Rangoon covers CNDR holders later per Principal/CoS."
+  }
 }
